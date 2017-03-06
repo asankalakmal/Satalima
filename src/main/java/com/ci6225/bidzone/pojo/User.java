@@ -9,6 +9,8 @@ public class User {
         private String phone;
         private String country;
         private int userType;
+        private byte[] salt;
+        private String password;
 
     public String getUsercode() {
         return usercode;
@@ -66,9 +68,21 @@ public class User {
         this.userType = userType;
     }
 
+    public byte[] getSalt() {
+        return salt;
+    }
 
-	
-	
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 	
 		
 }

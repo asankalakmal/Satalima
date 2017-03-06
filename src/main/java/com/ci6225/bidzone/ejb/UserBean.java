@@ -19,4 +19,19 @@ public User userExist(String username) throws Exception{
                 String passwordEnc = PasswordUtil.getSecurePassword(password, salt);
 		userDao.addUser(userCode, firstName, lastName, email, phone, country, userType, passwordEnc, salt);
 	}
+        
+        public User login(String username, String password) throws Exception{
+		UserDao userDao = new UserDao();
+		User user = userDao.getUserByUsername(username);
+		if(user != null){
+			byte[] salt = user.getSalt();
+			if(salt != null){
+				String hashedPassword = PasswordUtil.getSecurePassword(password, salt);
+				if(hashedPassword.equals(user.getPassword())){
+					return user;
+				}
+			}
+		}
+		return null;
+	}
 }

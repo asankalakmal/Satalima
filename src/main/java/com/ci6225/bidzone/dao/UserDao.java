@@ -90,6 +90,8 @@ public User getUserByUsername(String username) throws Exception{
                         user.setPhone(rs.getString("phone"));
                         user.setCountry(rs.getString("country"));
 			user.setUserType(rs.getInt("user_type_id"));
+                        user.setSalt(rs.getBytes("salt"));
+			user.setPassword(rs.getString("password"));
 		} 
 	}
 	finally{

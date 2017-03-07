@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet("/seller/AddProduct")
+@WebServlet("/seller/AddAvailability")
 public class AddAvailabilityServlet extends HttpServlet{
     @EJB
     ProductBean productBean;

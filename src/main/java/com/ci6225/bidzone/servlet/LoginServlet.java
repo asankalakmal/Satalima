@@ -13,49 +13,47 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-        @EJB
-        UserBean userBean;
-       
+
+    private static final long serialVersionUID = 1L;
+    @EJB
+    UserBean userBean;
+
     public LoginServlet() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		
-		try {
-			                 User user = userBean.login(username, password);
-			if(user == null){
-				request.setAttribute("errorMessage", "Invalid username or password.");
-				RequestDispatcher rd = request.getRequestDispatcher("./register.jsp");
+        try {
+            User user = userBean.login(username, password);
+            if (user == null) {
+                request.setAttribute("errorMessage", "Invalid username or password.");
+                RequestDispatcher rd = request.getRequestDispatcher("./register.jsp");
                 rd.forward(request, response);
-			}else{
-				request.getSession().setAttribute("user", user);
-                                if(user.getUserType()==Constants.ADMIN_ROLE){
-                                    //TODO
-                                    response.sendRedirect("./");
-                                }else if(user.getUserType()==Constants.SELLER_ROLE){
-                                    response.sendRedirect("./buyer/add_product.jsp");
-                                }else{
-                                    response.sendRedirect("./products");
-                                }
-				
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			response.sendRedirect("./");
-		}
-	}
+            } else {
+                request.getSession().setAttribute("user", user);
+                if (user.getUserType() == Constants.ADMIN_ROLE) {
+                    //TODO
+                    response.sendRedirect("./");
+                } else if (user.getUserType() == Constants.SELLER_ROLE) {
+                    response.sendRedirect("./seller/add_product.jsp");
+                } else {
+                    response.sendRedirect("./products");
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("./");
+        }
+    }
 
 }

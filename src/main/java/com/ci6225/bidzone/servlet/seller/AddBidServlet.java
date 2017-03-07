@@ -5,9 +5,13 @@
  */
 package com.ci6225.bidzone.servlet.seller;
 
+import com.ci6225.bidzone.ejb.BidBean;
 import com.ci6225.bidzone.ejb.ProductBean;
 import com.ci6225.bidzone.pojo.User;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,14 +24,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet("/seller/AddProduct")
-public class AddAvailabilityServlet extends HttpServlet{
+@WebServlet("/AddBidAvailability")
+public class AddBidServlet extends HttpServlet{
     @EJB
-    ProductBean productBean;
+    BidBean bidBean;
+    private final static String DATE_FORMAT = "YYYY-MM-DD HH";
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddAvailabilityServlet() {
+    public AddBidServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,17 +49,20 @@ public class AddAvailabilityServlet extends HttpServlet{
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		
+		 
+                DateFormat format = new SimpleDateFormat(DATE_FORMAT);               
+		String description = request.getParameter("description");		
 		try {
+                    int productId = Integer.parseInt(request.getParameter("productId")); 
+                    Date startTime = format.parse(request.getParameter("startTime"));
+                    Date endTime = format.parse(request.getParameter("endTime"));
+                    double minAmount = Double.parseDouble(request.getParameter("minAmount"));
                     User user = (User) request.getSession().getAttribute("user");
-                    productBean.addProduct(name, description, user.getUsercode());
-			request.setAttribute("successMessage", "Product Added Successfully.");
-			RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
-                rd.forward(request, response);
-			
-			
+                    bidBean.addBid(productId, startTime, endTime, minAmount, user.getUserId());
+                    
+                    request.setAttribute("successMessage", "Product Bid Availablity Added Successfully.");
+                    RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
+                    rd.forward(request, response);						
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("./");

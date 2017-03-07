@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet("/buyer/RemoveProductsFormCart")
+@WebServlet("/RemoveProductsFormCart")
 public class RemoveProductsFromCartServlet extends HttpServlet{
     @EJB
     ProductBean productBean;
@@ -50,7 +50,7 @@ public class RemoveProductsFromCartServlet extends HttpServlet{
 		
 		try {
                     User user = (User) request.getSession().getAttribute("user");
-                    productBean.addProduct(name, description, user.getUsercode());
+                  //  productBean.addProduct(name, description, user.getUsercode());
 			request.setAttribute("successMessage", "Product Added Successfully.");
 			RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
                 rd.forward(request, response);

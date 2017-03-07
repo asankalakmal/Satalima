@@ -35,7 +35,7 @@ public class UserDao {
 		return userList;
 	}*/
 	
-	public User getUserByUsernamePassword(String username, String password) throws Exception{
+	/*public User getUserByUsernamePassword(String username, String password) throws Exception{
 		String selectStatement = "select * from user where Usercode=? and Password=?";  
 		User user = null;
 		Connection con = null;
@@ -65,7 +65,7 @@ public class UserDao {
 			if(con != null) con.close();
 		}
 		return user;
-	}
+	}*/
 	
 
 public User getUserByUsername(String username) throws Exception{
@@ -81,17 +81,17 @@ public User getUserByUsername(String username) throws Exception{
 		rs = ps.executeQuery();
 
 		if (rs.next()) {
-			user = new User();
-			//user.setId(rs.getInt("userID"));
-			user.setUsercode(rs.getString("usercode"));
-			user.setFirstName(rs.getString("First_Name"));
-			user.setLastName(rs.getString("Last_Name"));
-                        user.setEmail(rs.getString("email"));
-                        user.setPhone(rs.getString("phone"));
-                        user.setCountry(rs.getString("country"));
-			user.setUserType(rs.getInt("user_type_id"));
-                        user.setSalt(rs.getBytes("salt"));
-			user.setPassword(rs.getString("password"));
+			int userId = rs.getInt("id");
+			String usercode = rs.getString("usercode");
+			String firstName = rs.getString("First_Name");
+			String lastName = rs.getString("Last_Name");
+                        String email = rs.getString("email");
+                        String phone = rs.getString("phone");
+                        String country = rs.getString("country");
+			int userType = rs.getInt("user_type_id");
+                        byte[] salt = rs.getBytes("salt");
+			String password = rs.getString("password");
+                       user = new User(userId, usercode, firstName, lastName, email, phone, country, userType, salt, password);
 		} 
 	}
 	finally{

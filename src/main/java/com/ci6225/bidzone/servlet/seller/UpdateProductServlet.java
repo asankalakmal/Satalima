@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet("/seller/UpdateProduct")
+@WebServlet("/UpdateProduct")
 public class UpdateProductServlet extends HttpServlet{
     @EJB
     ProductBean productBean;
@@ -44,16 +44,17 @@ public class UpdateProductServlet extends HttpServlet{
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		
 		try {
+                    String name = request.getParameter("name");
+		String description = request.getParameter("description");
+		double unitPrice = Double.parseDouble(request.getParameter("unitPrice"));
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
+                int id = Integer.parseInt(request.getParameter("id"));
                     User user = (User) request.getSession().getAttribute("user");
-                    productBean.addProduct(name, description, user.getUsercode());
-			request.setAttribute("successMessage", "Product Added Successfully.");
-			RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
-                rd.forward(request, response);
-			
+                    productBean.updateProduct(id, name, description, quantity, unitPrice, user.getUserId());
+                    request.setAttribute("successMessage", "Product Updated Successfully.");
+                    RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
+                    rd.forward(request, response);                 
 			
 		} catch (Exception e) {
 			e.printStackTrace();

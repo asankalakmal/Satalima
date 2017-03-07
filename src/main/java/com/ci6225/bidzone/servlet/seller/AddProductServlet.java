@@ -46,15 +46,15 @@ public class AddProductServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
+                double unitPrice = Double.parseDouble(request.getParameter("unitPrice"));
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
 		try {
                     User user = (User) request.getSession().getAttribute("user");
-                    productBean.addProduct(name, description, user.getUsercode());
-			request.setAttribute("successMessage", "Product Added Successfully.");
-			RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
-                rd.forward(request, response);
-			
-			
+                    productBean.addProduct(name, description, user.getUserId(), quantity, unitPrice);
+                    request.setAttribute("successMessage", "Product Added Successfully.");
+                    RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
+                    rd.forward(request, response);						
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("./");

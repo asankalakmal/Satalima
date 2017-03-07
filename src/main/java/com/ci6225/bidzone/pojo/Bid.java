@@ -13,10 +13,29 @@ import java.util.Date;
  */
 public class Bid {
     private int id;
+    private int productId;
     private Date startTime;
     private Date endTime;
     private double minAmount;
-    private double saleAmount;
+    private int winnerBidId;
+    
+    public Bid(int productId, Date startTime, Date endTime, double minAmount){
+        this.productId = productId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.minAmount = minAmount;
+    }
+    
+    public Bid(int id, int productId, Date startTime, Date endTime, double minAmount){
+        this(productId, startTime, endTime, minAmount);
+        this.id = id;
+       
+    }
+    
+    public Bid(int id, int productId, Date startTime, Date endTime, double minAmount, int winnerBidId){
+        this(id, productId, startTime, endTime, minAmount);
+        this.winnerBidId = winnerBidId;
+    }
 
     public int getId() {
         return id;
@@ -24,6 +43,14 @@ public class Bid {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public Date getStartTime() {
@@ -50,12 +77,12 @@ public class Bid {
         this.minAmount = minAmount;
     }
 
-    public double getSaleAmount() {
-        return saleAmount;
+    public int getWinnerBidId() {
+        return winnerBidId;
     }
 
-    public void setSaleAmount(double saleAmount) {
-        this.saleAmount = saleAmount;
+    public void setWinnerBidId(int winnerBidId) {
+        this.winnerBidId = winnerBidId;
     }
     
 }

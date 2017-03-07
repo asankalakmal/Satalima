@@ -2,6 +2,7 @@ package com.ci6225.bidzone.pojo;
 
 
 public class User {
+        private int userId;
 	private String usercode;
 	private String firstName;
 	private String lastName;
@@ -11,6 +12,28 @@ public class User {
         private int userType;
         private byte[] salt;
         private String password;
+
+    public User(int userId, String usercode, String firstName, String lastName, String email, String phone, String country, int userType, byte[] salt, String password) {
+        this.userId = userId;
+        this.usercode = usercode;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.country = country;
+        this.userType = userType;
+        this.salt = salt;
+        this.password = password;
+    }
+        
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getUsercode() {
         return usercode;

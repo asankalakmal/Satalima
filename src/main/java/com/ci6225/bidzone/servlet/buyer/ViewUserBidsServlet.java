@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ci6225.bidzone.servlet.seller;
+package com.ci6225.bidzone.servlet.buyer;
 
+import com.ci6225.bidzone.servlet.seller.*;
 import com.ci6225.bidzone.ejb.ProductBean;
 import com.ci6225.bidzone.pojo.User;
 import java.io.IOException;
@@ -20,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet("/seller/AddBidAvailability")
-public class AddBidAvailabilityServlet extends HttpServlet{
+@WebServlet("/ViewUserBids")
+public class ViewUserBidsServlet extends HttpServlet{
     @EJB
     ProductBean productBean;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddBidAvailabilityServlet() {
+    public ViewUserBidsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,7 +50,7 @@ public class AddBidAvailabilityServlet extends HttpServlet{
 		
 		try {
                     User user = (User) request.getSession().getAttribute("user");
-                    productBean.addProduct(name, description, user.getUsercode());
+                    //productBean.addProduct(name, description, user.getUsercode());
 			request.setAttribute("successMessage", "Product Added Successfully.");
 			RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
                 rd.forward(request, response);

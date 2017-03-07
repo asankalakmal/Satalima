@@ -21,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet("/buyer/AddBid")
-public class AddBidServlet extends HttpServlet{
+@WebServlet("/AddUserBid")
+public class AddUserBidServlet extends HttpServlet{
     @EJB
     ProductBean productBean;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddBidServlet() {
+    public AddUserBidServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,10 +47,11 @@ public class AddBidServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
+                 
 		
 		try {
                     User user = (User) request.getSession().getAttribute("user");
-                    productBean.addProduct(name, description, user.getUsercode());
+                    productBean.addProduct(name, description, 0, 0, 0);
 			request.setAttribute("successMessage", "Product Added Successfully.");
 			RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
                 rd.forward(request, response);

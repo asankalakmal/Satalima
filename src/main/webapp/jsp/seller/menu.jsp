@@ -5,7 +5,7 @@
             <ul>
                 <li><a href="./product_list.jsp">Products</a>					
                     <ul>
-                        <li><a href="./new_product.jsp">New Product</a></li>																									
+                        <li><a href="${pageContext.request.contextPath}/jsp/seller/add_product.jsp">New Product</a></li>																									
                     </ul>
                 </li>															
                 <li><a href="./products.jsp">Man</a></li>			

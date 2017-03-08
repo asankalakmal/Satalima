@@ -7,7 +7,7 @@
         </section>			
         <section class="main-content">				
             <div class="row">
-                <form action="AddProduct" method="post">
+                <form action="${pageContext.request.contextPath}/AddProduct" method="post">
                     <input type="hidden" name="next" value="/">
                     <fieldset>
 
@@ -21,6 +21,18 @@
                             <label class="control-label">Description</label>
                             <div class="controls">
                                 <input type="text" placeholder="Product Description" id="description" name="description" class="input-xlarge">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Unit Price</label>
+                            <div class="controls">
+                                <input type="text" placeholder="Unit Price" id="unitPrice" name="unitPrice" class="input-xlarge">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Quantity</label>
+                            <div class="controls">
+                                <input type="text" placeholder="Quantity" id="quantity" name="quantity" class="input-xlarge">
                             </div>
                         </div>
                         <div class="control-group">

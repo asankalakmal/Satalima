@@ -5,11 +5,13 @@
  */
 package com.ci6225.bidzone.servlet.buyer;
 
-import com.ci6225.bidzone.servlet.seller.*;
-import com.ci6225.bidzone.ejb.ProductBean;
-import com.ci6225.bidzone.pojo.User;
+import com.ci6225.bidzone.ejb.ShoppingCartBean;
+import com.ci6225.bidzone.ejb.ShoppingCartBeanLocal;
+import com.ci6225.bidzone.pojo.Product;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
+import javax.naming.InitialContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,10 +23,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet("/GetProductsList")
+@WebServlet(name="GetProductsList", urlPatterns={"/index.html","/GetProductsList" })
 public class GetProductsListServlet extends HttpServlet{
-    @EJB
-    ProductBean productBean;
+    //@EJB
+    //ShoppingCartBeanLocal shoppingCartBean;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,22 +39,25 @@ public class GetProductsListServlet extends HttpServlet{
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		          doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		
 		try {
-                    User user = (User) request.getSession().getAttribute("user");
-                    //productBean.addProduct(name, description, user.getUsercode());
-			request.setAttribute("successMessage", "Product Added Successfully.");
-			RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
+                    ShoppingCartBeanLocal shoppingCartBean = (ShoppingCartBeanLocal) request.getSession().getAttribute("shoppingCartBean");
+                    if(shoppingCartBean == null){
+                    InitialContext ic = new InitialContext();
+                    shoppingCartBean = (ShoppingCartBeanLocal) ic.lookup("java:global/BidZone/ShoppingCartBean");
+                    request.getSession().setAttribute("shoppingCartBean", shoppingCartBean);
+                    }
+                        System.out.println(shoppingCartBean.getProductList().size());
+                    List<Product> productList = shoppingCartBean.searchProducts();
+                     System.out.println(shoppingCartBean.getProductList().size());
+                    RequestDispatcher rd = request.getRequestDispatcher("./jsp/index.jsp");
+                    request.setAttribute("availableProductList", productList);
                 rd.forward(request, response);
 			
 			

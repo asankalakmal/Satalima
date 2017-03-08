@@ -18,6 +18,7 @@ public class Product {
     private int quantity;
     private double unitPrice;
     private int sellerId;
+    private String sellerName;
     private List<Integer> categoryList;
     
     public Product(String name, String description, int quantity, double unitPrice, int sellerId) {
@@ -31,6 +32,15 @@ public class Product {
     public Product(int id, String name, String description, int quantity, double unitPrice, int sellerId) {
         this(name, description, quantity, unitPrice, sellerId);
         this.id = id;
+    }
+    
+    public Product(int id, String name, String description, int quantity, double unitPrice, String sellerName) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.sellerName = sellerName;
     }
     
     public int getId() {
@@ -87,6 +97,14 @@ public class Product {
 
     public void setCategoryList(List<Integer> categoryList) {
         this.categoryList = categoryList;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
     }
     
 }

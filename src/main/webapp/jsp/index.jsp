@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/jsp/common/header.jsp"></jsp:include>
     <div id="wrapper" class="container">
     <jsp:include page="/jsp/common/menu.jsp"></jsp:include>
@@ -48,7 +49,8 @@
                                     </ul>
                                 </div>
                                 <div class="item">
-                                    <ul class="thumbnails">
+                                    <c:forEach var="product" items="${availableProductList}">
+                                        <ul class="thumbnails">
                                         <li class="span3">
                                             <div class="product-box">
                                                 <p><a href="product_detail.html"><img src="${pageContext.request.contextPath}/themes/images/ladies/5.jpg" alt="" /></a></p>
@@ -59,6 +61,8 @@
                                         </li>                                        
                          																																
                                     </ul>
+                                    </c:forEach>
+                                    
                                 </div>
                             </div>							
                         </div>
@@ -76,40 +80,18 @@
                         <div id="myCarousel-2" class="myCarousel carousel slide">
                             <div class="carousel-inner">
                                 <div class="active item">
-                                    <ul class="thumbnails">												
+                                    <ul class="thumbnails">	
+                                        <c:forEach var="product" items="${availableProductList}" varStatus="index">
                                         <li class="span3">
                                             <div class="product-box">
                                                 <span class="sale_tag"></span>
-                                                <p><a href="product_detail.html"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
-                                                <a href="product_detail.html" class="title">Ut wisi enim ad</a><br/>
+                                                <p><a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
+                                                <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="title">Ut wisi enim ad</a><br/>
                                                 <a href="products.html" class="category">Commodo consequat</a>
                                                 <p class="price">$25.50</p>
                                             </div>
                                         </li>
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <p><a href="product_detail.html"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware1.jpg" alt="" /></a></p>
-                                                <a href="product_detail.html" class="title">Quis nostrud exerci tation</a><br/>
-                                                <a href="products.html" class="category">Quis nostrud</a>
-                                                <p class="price">$17.55</p>
-                                            </div>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <p><a href="product_detail.html"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware6.jpg" alt="" /></a></p>
-                                                <a href="product_detail.html" class="title">Know exactly turned</a><br/>
-                                                <a href="products.html" class="category">Quis nostrud</a>
-                                                <p class="price">$25.30</p>
-                                            </div>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <p><a href="product_detail.html"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware5.jpg" alt="" /></a></p>
-                                                <a href="product_detail.html" class="title">You think fast</a><br/>
-                                                <a href="products.html" class="category">World once</a>
-                                                <p class="price">$25.60</p>
-                                            </div>
-                                        </li>
+                                        </c:forEach>
                                     </ul>
                                 </div>
                                 <div class="item">
@@ -121,90 +103,15 @@
                                                 <a href="products.html" class="category">Quis nostrud</a>
                                                 <p class="price">$45.50</p>
                                             </div>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <p><a href="product_detail.html"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware3.jpg" alt="" /></a></p>
-                                                <a href="product_detail.html" class="title">Ut wisi enim ad</a><br/>
-                                                <a href="products.html" class="category">Commodo consequat</a>
-                                                <p class="price">$33.50</p>
-                                            </div>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <p><a href="product_detail.html"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
-                                                <a href="product_detail.html" class="title">You think water</a><br/>
-                                                <a href="products.html" class="category">World once</a>
-                                                <p class="price">$45.30</p>
-                                            </div>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <p><a href="product_detail.html"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware1.jpg" alt="" /></a></p>
-                                                <a href="product_detail.html" class="title">Quis nostrud exerci</a><br/>
-                                                <a href="products.html" class="category">Quis nostrud</a>
-                                                <p class="price">$25.20</p>
-                                            </div>
-                                        </li>																																	
+                                        </li>                                       																																
                                     </ul>
                                 </div>
                             </div>							
                         </div>
                     </div>						
                 </div>
-                <div class="row feature_box">						
-                    <div class="span4">
-                        <div class="service">
-                            <div class="responsive">	
-                                <img src="${pageContext.request.contextPath}/themes/images/feature_img_2.png" alt="" />
-                                <h4>MODERN <strong>DESIGN</strong></h4>
-                                <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>									
-                            </div>
-                        </div>
-                    </div>
-                    <div class="span4">	
-                        <div class="service">
-                            <div class="customize">			
-                                <img src="${pageContext.request.contextPath}/themes/images/feature_img_1.png" alt="" />
-                                <h4>FREE <strong>SHIPPING</strong></h4>
-                                <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="span4">
-                        <div class="service">
-                            <div class="support">	
-                                <img src="${pageContext.request.contextPath}/themes/images/feature_img_3.png" alt="" />
-                                <h4>24/7 LIVE <strong>SUPPORT</strong></h4>
-                                <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
-                            </div>
-                        </div>
-                    </div>	
-                </div>		
+                	
             </div>				
-        </div>
-    </section>
-    <section class="our_client">
-        <h4 class="title"><span class="text">Manufactures</span></h4>
-        <div class="row">					
-            <div class="span2">
-                <a href="#"><img alt="" src="${pageContext.request.contextPath}/themes/images/clients/14.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="${pageContext.request.contextPath}/themes/images/clients/35.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="${pageContext.request.contextPath}/themes/images/clients/1.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="${pageContext.request.contextPath}/themes/images/clients/2.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="${pageContext.request.contextPath}/themes/images/clients/3.png"></a>
-            </div>
-            <div class="span2">
-                <a href="#"><img alt="" src="${pageContext.request.contextPath}/themes/images/clients/4.png"></a>
-            </div>
         </div>
     </section>
     <jsp:include page="/jsp/common/footer.jsp"></jsp:include>                                            

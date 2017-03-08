@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="span5">					
                     <h4 class="title"><span class="text"><strong>Login</strong> Form</span></h4>
-                    <form action="${pageContext.request.contextPath}/LoginServlet" method="post">
+                    <form action="${pageContext.request.contextPath}/Login" method="post">
                         <input type="hidden" name="next" value="/">
                         <fieldset>
 

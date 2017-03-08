@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/LoginServlet")
+@WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
             User user = userBean.login(username, password);
             if (user == null) {
                 request.setAttribute("errorMessage", "Invalid username or password.");
-                RequestDispatcher rd = request.getRequestDispatcher("./register.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/register");
                 rd.forward(request, response);
             } else {
                 request.getSession().setAttribute("user", user);
@@ -43,9 +43,9 @@ public class LoginServlet extends HttpServlet {
                     //TODO
                     response.sendRedirect("./");
                 } else if (user.getUserType() == Constants.SELLER_ROLE) {
-                    response.sendRedirect("./seller/add_product.jsp");
+                    response.sendRedirect("./jsp/seller/add_product.jsp");
                 } else {
-                    response.sendRedirect("./products");
+                    response.sendRedirect("./");
                 }
 
             }

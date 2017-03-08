@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet("/seller/AddProduct")
+@WebServlet("/AddProduct")
 public class AddProductServlet extends HttpServlet{
     @EJB
     ProductBean productBean;
@@ -53,7 +53,7 @@ public class AddProductServlet extends HttpServlet{
                     User user = (User) request.getSession().getAttribute("user");
                     productBean.addProduct(name, description, user.getUserId(), quantity, unitPrice);
                     request.setAttribute("successMessage", "Product Added Successfully.");
-                    RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("./");
                     rd.forward(request, response);						
 		} catch (Exception e) {
 			e.printStackTrace();

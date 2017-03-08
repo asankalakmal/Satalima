@@ -25,6 +25,18 @@
                             </div>
                         </div>
                         <div class="control-group">
+                            <label class="control-label">Unit Price</label>
+                            <div class="controls">
+                                <input type="text" placeholder="Unit Price" id="unitPrice" name="unitPrice" class="input-xlarge">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Quantity</label>
+                            <div class="controls">
+                                <input type="text" placeholder="Quantity" id="quantity" name="quantity" class="input-xlarge">
+                            </div>
+                        </div>
+                        <div class="control-group">
                             <input tabindex="3" class="btn btn-inverse large" type="submit" value="Add Product">
 
                         </div>

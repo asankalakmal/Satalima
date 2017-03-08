@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="span5">					
                     <h4 class="title"><span class="text"><strong>Login</strong> Form</span></h4>
-                    <form action="Login" method="post">
+                    <form action="${pageContext.request.contextPath}/Login" method="post">
                         <input type="hidden" name="next" value="/">
                         <fieldset>
 
@@ -35,7 +35,7 @@
                 </div>
                 <div class="span7">					
                     <h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
-                    <form action="Signup" method="post" class="form-stacked">
+                    <form action="SignupServlet" method="post" class="form-stacked">
                         <fieldset>
                             <div class="control-group">
 

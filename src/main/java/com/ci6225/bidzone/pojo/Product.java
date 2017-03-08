@@ -19,18 +19,20 @@ public class Product {
     private double unitPrice;
     private int sellerId;
     private String sellerName;
+    private String image;
     private List<Integer> categoryList;
     
-    public Product(String name, String description, int quantity, double unitPrice, int sellerId) {
+    public Product(String name, String description, int quantity, double unitPrice, int sellerId, String image) {
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
         this.sellerId = sellerId;
+        this.image = image;
     }
 
-    public Product(int id, String name, String description, int quantity, double unitPrice, int sellerId) {
-        this(name, description, quantity, unitPrice, sellerId);
+    public Product(int id, String name, String description, int quantity, double unitPrice, int sellerId, String image) {
+        this(name, description, quantity, unitPrice, sellerId, image);
         this.id = id;
     }
     
@@ -105,6 +107,13 @@ public class Product {
 
     public void setSellerName(String sellerName) {
         this.sellerName = sellerName;
+    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
     
 }

@@ -82,7 +82,7 @@ public class ProductDao {
                                 String description = rs.getString("description");
                                 int quantity = rs.getInt("quantity");
                                 double unitPrice = rs.getDouble("unit_price");
-                                Product product = new Product(id, name, description, quantity, unitPrice, sellerId);
+                                Product product = new Product(id, name, description, quantity, unitPrice, sellerId, null);
                                 productList.add(product);
 			} 
 		}

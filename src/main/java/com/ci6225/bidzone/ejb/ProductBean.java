@@ -8,8 +8,11 @@ package com.ci6225.bidzone.ejb;
 import com.ci6225.bidzone.dao.ProductDao;
 import com.ci6225.bidzone.dao.UserDao;
 import com.ci6225.bidzone.pojo.Product;
+import com.ci6225.bidzone.util.CommonUtil;
 import com.ci6225.bidzone.util.PasswordUtil;
+import java.io.File;
 import javax.ejb.Stateless;
+import org.apache.commons.fileupload.FileItem;
 
 /**
  *
@@ -17,17 +20,29 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class ProductBean {
-    public void addProduct(String name, String description, int userId, int quantity, double unitPrice) throws Exception{
-		ProductDao productDao = new ProductDao();
-                Product product = new Product(name, description, quantity, unitPrice, userId);
-                productDao.addProduct(product, userId);
+
+    public void addProduct(String name, String description, int userId, int quantity, double unitPrice, FileItem image, String uploadPath) throws Exception {
+        ProductDao productDao = new ProductDao();
+        String productName = uploadProductImage(image, userId, uploadPath);
+        Product product = new Product(name, description, quantity, unitPrice, userId, productName);
+        productDao.addProduct(product, userId);
     }
-    
-    public void updateProduct(int id, String name, String description, int quantity, double unitPrice, int userId) throws Exception{
-		ProductDao productDao = new ProductDao();
-                Product product = new Product(id, name, description, quantity, unitPrice, userId);
-                productDao.updateProduct(product, userId);
+
+    public void updateProduct(int id, String name, String description, int quantity, double unitPrice, int userId, FileItem image, String uploadPath) throws Exception {
+        ProductDao productDao = new ProductDao();
+        String productName = uploadProductImage(image, userId, uploadPath);
+        Product product = new Product(id, name, description, quantity, unitPrice, userId, productName);
+        productDao.updateProduct(product, userId);
     }
-    
-     
+
+    private String uploadProductImage(FileItem image, int userId, String uploadPath) throws Exception {
+        
+        String fileName = new File(image.getName()).getName();
+        String newFileName = CommonUtil.imageNameGenerate(fileName, userId);
+        String filePath = uploadPath + File.separator + newFileName;
+        File uploadedFile = new File(filePath);
+        image.write(uploadedFile);
+        return newFileName;
+    }
+
 }

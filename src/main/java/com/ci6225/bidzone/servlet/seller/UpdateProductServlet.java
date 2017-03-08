@@ -21,9 +21,11 @@ import javax.servlet.http.HttpServletResponse;
  * @author Ureka
  */
 @WebServlet("/UpdateProduct")
-public class UpdateProductServlet extends HttpServlet{
+public class UpdateProductServlet extends HttpServlet {
+
     @EJB
     ProductBean productBean;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,34 +34,36 @@ public class UpdateProductServlet extends HttpServlet{
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        response.getWriter().append("Served at: ").append(request.getContextPath());
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-                    String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		double unitPrice = Double.parseDouble(request.getParameter("unitPrice"));
-                int quantity = Integer.parseInt(request.getParameter("quantity"));
-                int id = Integer.parseInt(request.getParameter("id"));
-                    User user = (User) request.getSession().getAttribute("user");
-                    productBean.updateProduct(id, name, description, quantity, unitPrice, user.getUserId());
-                    request.setAttribute("successMessage", "Product Updated Successfully.");
-                    RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
-                    rd.forward(request, response);                 
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			response.sendRedirect("./");
-		}
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            String name = request.getParameter("name");
+            String description = request.getParameter("description");
+            double unitPrice = Double.parseDouble(request.getParameter("unitPrice"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            int id = Integer.parseInt(request.getParameter("id"));
+            User user = (User) request.getSession().getAttribute("user");
+            productBean.updateProduct(id, name, description, quantity, unitPrice, user.getUserId(), null, null);
+            request.setAttribute("successMessage", "Product Updated Successfully.");
+            RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
+            rd.forward(request, response);
 
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("./");
+        }
+
+    }
 }

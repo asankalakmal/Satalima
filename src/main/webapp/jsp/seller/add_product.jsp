@@ -7,6 +7,7 @@
         </section>			
         <section class="main-content">				
             <div class="row">
+                <div class="span11">
                 <form action="AddProduct" method="post">
                     <input type="hidden" name="next" value="/">
                     <fieldset>
@@ -28,7 +29,8 @@
 
                         </div>
                     </fieldset>
-                </form>	 								
+                </form>
+                </div>
             </div>
         </section>			
     <jsp:include page="/jsp/common/footer.jsp"></jsp:include>

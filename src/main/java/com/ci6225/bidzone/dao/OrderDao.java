@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,7 +48,9 @@ public class OrderDao {
      String country = rs.getString("country");
      int paymentMethod = rs.getInt("payment_method");
      String comments = rs.getString("comments");
-			order = new ShoppingCart(orderId, totalPrice, adminFee, cartTotal, firstName, lastName, email, telephone, address1, address2, city, postalCode, country, paymentMethod, comments);
+     Date orderDate = rs.getDate("order_date");
+			order = new ShoppingCart(orderId, totalPrice, adminFee, cartTotal, firstName, lastName, email, telephone, address1, address2, city, postalCode, country, paymentMethod, comments, orderDate);
+                        
                 }                   
                         ps.close();
                         rs.close();
@@ -80,5 +83,48 @@ public class OrderDao {
 		if(con != null) con.close();
 	}
         return order;
+    }
+    
+    
+    public List<ShoppingCart> getOrderList(int userId) throws Exception{
+        String selectStatement = "select * from order_detail where user_id=? order by order_date desc";  
+        List<ShoppingCart> orderList = new ArrayList<>();
+	       Connection con = null;
+	       PreparedStatement ps = null;
+	       ResultSet rs = null;
+	try{
+		con = ConnectionUtil.createConnection();
+		ps = con.prepareStatement(selectStatement);    
+		ps.setInt(1, userId);
+		rs = ps.executeQuery();
+
+		while (rs.next()) {
+                    ShoppingCart order = new ShoppingCart();
+                    int orderId = rs.getInt("id");
+                     float totalPrice = rs.getFloat("total_amount");
+                float adminFee = (float) (totalPrice * 0.01);
+                float cartTotal = totalPrice + adminFee;
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String email = rs.getString("email");
+                String telephone = rs.getString("telephone");
+                String address1 = rs.getString("address1");
+                String address2 = rs.getString("address2");
+                String city = rs.getString("city");
+                String postalCode = rs.getString("postal_code");
+                String country = rs.getString("country");
+                int paymentMethod = rs.getInt("payment_method");
+                String comments = rs.getString("comments");
+                    Date orderDate = rs.getTime("order_date");
+			order = new ShoppingCart(orderId, totalPrice, adminFee, cartTotal, firstName, lastName, email, telephone, address1, address2, city, postalCode, country, paymentMethod, comments, orderDate);
+                orderList.add(order);
+                }                                          
+	}
+	finally{
+		if(rs != null) rs.close();
+		if(ps != null) ps.close();
+		if(con != null) con.close();
+	}
+        return orderList;
     }
 }

@@ -7,6 +7,7 @@ package com.ci6225.bidzone.ejb;
 
 import com.ci6225.bidzone.dao.OrderDao;
 import com.ci6225.bidzone.pojo.ShoppingCart;
+import java.util.List;
 import javax.ejb.Stateless;
 
 /**
@@ -19,5 +20,11 @@ public class OrderBean {
         OrderDao dao = new OrderDao();
         ShoppingCart cart = dao.loadOrderDetails(orderId);       
         return cart;
+    }
+    
+    public List<ShoppingCart> getOrderList(int userId) throws Exception{
+        OrderDao dao = new OrderDao();
+        List<ShoppingCart> orderList = dao.getOrderList(userId);
+        return orderList;
     }
 }

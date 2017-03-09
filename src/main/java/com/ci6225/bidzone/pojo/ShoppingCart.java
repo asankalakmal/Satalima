@@ -6,6 +6,7 @@
 package com.ci6225.bidzone.pojo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,12 +30,13 @@ public class ShoppingCart {
     private String country;
     private int paymentMethod;
     private String comments;
+    private Date orderDate;
     
     public ShoppingCart(){
         
     }
 
-    public ShoppingCart(int id, float totalPrice, float adminFee, float cartTotal, String firstName, String lastName, String email, String telephone, String address1, String address2, String city, String postalCode, String country, int paymentMethod, String comments) {
+    public ShoppingCart(int id, float totalPrice, float adminFee, float cartTotal, String firstName, String lastName, String email, String telephone, String address1, String address2, String city, String postalCode, String country, int paymentMethod, String comments, Date orderDate) {
         this.id = id;
         this.totalPrice = totalPrice;
         this.adminFee = adminFee;
@@ -50,6 +52,7 @@ public class ShoppingCart {
         this.country = country;
         this.paymentMethod = paymentMethod;
         this.comments = comments;
+        this.orderDate = orderDate;
     }
    
 
@@ -179,6 +182,14 @@ public class ShoppingCart {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
     
     

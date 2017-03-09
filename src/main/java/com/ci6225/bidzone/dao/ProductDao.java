@@ -6,6 +6,7 @@
 package com.ci6225.bidzone.dao;
 
 import com.ci6225.bidzone.pojo.Product;
+import com.ci6225.bidzone.pojo.Seller;
 import com.ci6225.bidzone.util.ConnectionUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -81,8 +82,10 @@ public class ProductDao {
                                 String name = rs.getString("name");
                                 String description = rs.getString("description");
                                 int quantity = rs.getInt("quantity");
-                                double unitPrice = rs.getDouble("unit_price");
-                                Product product = new Product(id, name, description, quantity, unitPrice, sellerId, null);
+                                float unitPrice = rs.getFloat("unit_price");
+                                Product product = new Product(id, name, description, quantity, unitPrice, null);
+                                Seller seller = new Seller(sellerId);
+                                product.setSeller(seller);
                                 productList.add(product);
 			} 
 		}

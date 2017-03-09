@@ -79,33 +79,30 @@
                         </h4>
                         <div id="myCarousel-2" class="myCarousel carousel slide">
                             <div class="carousel-inner">
-                                <div class="active item">
-                                    <ul class="thumbnails">	
+     
                                         <c:forEach var="product" items="${availableProductList}" varStatus="index">
+                                             
+                                            <c:if test="${index.index % 8 == 0}">
+                                                
+                                                <div class="item <c:if test='${index.index == 0}'>active</c:if>">
+                                                <ul class="thumbnails">
+                                            </c:if>
                                         <li class="span3">
                                             <div class="product-box">
                                                 <span class="sale_tag"></span>
                                                 <p><a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
-                                                <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="title">Ut wisi enim ad</a><br/>
-                                                <a href="products.html" class="category">Commodo consequat</a>
+                                                <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="title">${product.name}</a><br/>
+                                                <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="category">${product.seller.sellerName}</a>
                                                 <p class="price">$25.50</p>
                                             </div>
                                         </li>
+                                        <c:if test="${index.index % 8 == 7}">
+                                             </ul>
+                                        </div>
+                                            
+                                        </c:if>
                                         </c:forEach>
-                                    </ul>
-                                </div>
-                                <div class="item">
-                                    <ul class="thumbnails">
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <p><a href="product_detail.html"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware4.jpg" alt="" /></a></p>
-                                                <a href="product_detail.html" class="title">Know exactly</a><br/>
-                                                <a href="products.html" class="category">Quis nostrud</a>
-                                                <p class="price">$45.50</p>
-                                            </div>
-                                        </li>                                       																																
-                                    </ul>
-                                </div>
+                      
                             </div>							
                         </div>
                     </div>						

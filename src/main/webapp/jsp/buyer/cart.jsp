@@ -29,7 +29,7 @@
                                             <img alt="" src="themes/images/ladies/9.jpg"></a>
                                     </td>
                                     <td>${item.product.name}</td>
-                                    <td><input type="text" value="${item.quantity}" class="input-mini"></td>
+                                    <td><input type="text" placeholder="1" class="input-mini"></td>
                                     <td>$${item.product.unitPrice}</td>
                                     <td>$${item.amount}</td>
                                 </tr>

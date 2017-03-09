@@ -776,3 +776,7 @@ section.our_client .row{
 		border-bottom:1px solid #eee;
 	}
 }
+
+.span5 .red_font{
+        color: #eb4800;
+}

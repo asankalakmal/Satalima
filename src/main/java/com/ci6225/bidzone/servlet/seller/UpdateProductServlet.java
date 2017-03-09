@@ -51,7 +51,7 @@ public class UpdateProductServlet extends HttpServlet {
         try {
             String name = request.getParameter("name");
             String description = request.getParameter("description");
-            double unitPrice = Double.parseDouble(request.getParameter("unitPrice"));
+            float unitPrice = Float.parseFloat(request.getParameter("unitPrice"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             int id = Integer.parseInt(request.getParameter("id"));
             User user = (User) request.getSession().getAttribute("user");

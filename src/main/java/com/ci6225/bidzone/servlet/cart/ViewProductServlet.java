@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ci6225.bidzone.servlet.buyer;
+package com.ci6225.bidzone.servlet.cart;
 
 import com.ci6225.bidzone.servlet.seller.*;
 import com.ci6225.bidzone.ejb.ProductBean;
+import com.ci6225.bidzone.ejb.ShoppingCartBean;
+import com.ci6225.bidzone.ejb.ShoppingCartBeanLocal;
 import com.ci6225.bidzone.pojo.User;
 import java.io.IOException;
 import javax.ejb.EJB;
@@ -21,14 +23,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet("/Checkout")
-public class CheckoutServlet extends HttpServlet{
-    @EJB
-    ProductBean productBean;
+@WebServlet("/ViewProduct")
+public class ViewProductServlet extends HttpServlet{
+    //@EJB
+    ShoppingCartBeanLocal cartBean;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckoutServlet() {
+    public ViewProductServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,23 +39,20 @@ public class CheckoutServlet extends HttpServlet{
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		          doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		
 		try {
-                    User user = (User) request.getSession().getAttribute("user");
-                   // productBean.addProduct(name, description, user.getUsercode());
-			request.setAttribute("successMessage", "Product Added Successfully.");
-			RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
-                rd.forward(request, response);
+                    int productIndex = Integer.parseInt(request.getParameter("productIndex"));
+                    cartBean = (ShoppingCartBeanLocal) request.getSession().getAttribute("shoppingCartBean");
+                    request.setAttribute("detailProduct", cartBean.getProductList().get(productIndex));
+                    request.setAttribute("productIndex", productIndex);
+                    RequestDispatcher rd = request.getRequestDispatcher("./jsp/cart/product_detail.jsp");
+                    rd.forward(request, response);
 			
 			
 		} catch (Exception e) {

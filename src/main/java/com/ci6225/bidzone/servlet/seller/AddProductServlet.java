@@ -128,7 +128,7 @@ public class AddProductServlet extends HttpServlet {
 
         try {
             User user = (User) request.getSession().getAttribute("user");
-            productBean.addProduct(name, description, user.getUserId(), Integer.parseInt(quantity), Double.parseDouble(unitPrice), imageItem, uploadFolder);
+            productBean.addProduct(name, description, user.getUserId(), Integer.parseInt(quantity), Float.parseFloat(unitPrice), imageItem, uploadFolder);
             request.setAttribute("successMessage", "Product Added Successfully.");
             RequestDispatcher rd = request.getRequestDispatcher("./");
             rd.forward(request, response);

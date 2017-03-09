@@ -13,6 +13,20 @@ public class CartItem {
     private int productId;
     private int quantity;
     private float amount;
+    private int productIndex;
+    private Product product;
+    
+    public CartItem(int productId, int quantity, float amount, int productIndex){
+        this.productId = productId;
+        this.quantity = quantity;
+        this.amount = amount;
+        this.productIndex = productIndex;
+    }
+
+    public CartItem(int quantity, float amount) {
+        this.quantity = quantity;
+        this.amount = amount;
+    }
 
     public int getProductId() {
         return productId;
@@ -36,6 +50,22 @@ public class CartItem {
 
     public void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    public int getProductIndex() {
+        return productIndex;
+    }
+
+    public void setProductIndex(int productIndex) {
+        this.productIndex = productIndex;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
     
     

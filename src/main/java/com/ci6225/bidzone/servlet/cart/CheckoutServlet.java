@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ci6225.bidzone.servlet.buyer;
+package com.ci6225.bidzone.servlet.cart;
 
 import com.ci6225.bidzone.servlet.seller.*;
 import com.ci6225.bidzone.ejb.ProductBean;
@@ -21,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet("/RemoveProductsFormCart")
-public class RemoveProductsFromCartServlet extends HttpServlet{
+@WebServlet("/Checkout")
+public class CheckoutServlet extends HttpServlet{
     @EJB
     ProductBean productBean;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveProductsFromCartServlet() {
+    public CheckoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -50,7 +50,7 @@ public class RemoveProductsFromCartServlet extends HttpServlet{
 		
 		try {
                     User user = (User) request.getSession().getAttribute("user");
-                  //  productBean.addProduct(name, description, user.getUsercode());
+                   // productBean.addProduct(name, description, user.getUsercode());
 			request.setAttribute("successMessage", "Product Added Successfully.");
 			RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
                 rd.forward(request, response);

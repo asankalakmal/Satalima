@@ -8,6 +8,7 @@ package com.ci6225.bidzone.ejb;
 import com.ci6225.bidzone.dao.ProductDao;
 import com.ci6225.bidzone.dao.UserDao;
 import com.ci6225.bidzone.pojo.Product;
+import com.ci6225.bidzone.pojo.Seller;
 import com.ci6225.bidzone.util.CommonUtil;
 import com.ci6225.bidzone.util.PasswordUtil;
 import java.io.File;
@@ -21,17 +22,21 @@ import org.apache.commons.fileupload.FileItem;
 @Stateless
 public class ProductBean {
 
-    public void addProduct(String name, String description, int userId, int quantity, double unitPrice, FileItem image, String uploadPath) throws Exception {
+    public void addProduct(String name, String description, int userId, int quantity, float unitPrice, FileItem image, String uploadPath) throws Exception {
         ProductDao productDao = new ProductDao();
         String productName = uploadProductImage(image, userId, uploadPath);
-        Product product = new Product(name, description, quantity, unitPrice, userId, productName);
+        Product product = new Product(name, description, quantity, unitPrice, productName);
+        Seller seller = new Seller(userId);
+        product.setSeller(seller);
         productDao.addProduct(product, userId);
     }
 
-    public void updateProduct(int id, String name, String description, int quantity, double unitPrice, int userId, FileItem image, String uploadPath) throws Exception {
+    public void updateProduct(int id, String name, String description, int quantity, float unitPrice, int userId, FileItem image, String uploadPath) throws Exception {
         ProductDao productDao = new ProductDao();
         String productName = uploadProductImage(image, userId, uploadPath);
-        Product product = new Product(id, name, description, quantity, unitPrice, userId, productName);
+        Product product = new Product(id, name, description, quantity, unitPrice, productName);
+        Seller seller = new Seller(userId);
+        product.setSeller(seller);
         productDao.updateProduct(product, userId);
     }
 

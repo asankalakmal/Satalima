@@ -5,9 +5,12 @@
  */
 package com.ci6225.bidzone.servlet.buyer;
 
+import com.ci6225.bidzone.ejb.OrderBean;
+import com.ci6225.bidzone.servlet.cart.*;
 import com.ci6225.bidzone.ejb.ShoppingCartBean;
 import com.ci6225.bidzone.ejb.ShoppingCartBeanLocal;
 import com.ci6225.bidzone.pojo.Product;
+import com.ci6225.bidzone.pojo.ShoppingCart;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -23,14 +26,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet(name="GetProductsList", urlPatterns={"/index.html","/GetProductsList" })
-public class GetProductsListServlet extends HttpServlet{
-    //@EJB
-    //ShoppingCartBeanLocal shoppingCartBean;
+@WebServlet("/ViewOrder")
+public class ViewOrderServlet extends HttpServlet{
+    @EJB
+    OrderBean orderBean;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetProductsListServlet() {
+    public ViewOrderServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,17 +50,11 @@ public class GetProductsListServlet extends HttpServlet{
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-                    ShoppingCartBeanLocal shoppingCartBean = (ShoppingCartBeanLocal) request.getSession().getAttribute("shoppingCartBean");
-                    if(shoppingCartBean == null){
-                    InitialContext ic = new InitialContext();
-                    shoppingCartBean = (ShoppingCartBeanLocal) ic.lookup("java:global/BidZone/ShoppingCartBean");
-                    request.getSession().setAttribute("shoppingCartBean", shoppingCartBean);
-                    }
-                        System.out.println(shoppingCartBean.getProductList().size());
-                    List<Product> productList = shoppingCartBean.searchProducts();
-                     System.out.println(shoppingCartBean.getProductList().size());
-                    RequestDispatcher rd = request.getRequestDispatcher("./jsp/index.jsp");
-                    request.setAttribute("availableProductList", productList);
+                    int orderId = Integer.parseInt(request.getParameter("orderId"));
+                    ShoppingCart order = orderBean.loadOrder(orderId);
+                    request.setAttribute("order", order);
+                    RequestDispatcher rd = request.getRequestDispatcher("./jsp/buyer/order_detail.jsp");
+                    
                 rd.forward(request, response);
 			
 			

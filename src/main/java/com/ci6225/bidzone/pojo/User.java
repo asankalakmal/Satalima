@@ -2,16 +2,20 @@ package com.ci6225.bidzone.pojo;
 
 
 public class User {
-        private int userId;
-	private String usercode;
-	private String firstName;
-	private String lastName;
-        private String email;
-        private String phone;
-        private String country;
-        private int userType;
-        private byte[] salt;
-        private String password;
+        protected int userId;
+	protected String usercode;
+	protected String firstName;
+	protected String lastName;
+        protected String email;
+        protected String phone;
+        protected String country;
+        protected int userType;
+        protected byte[] salt;
+        protected String password;
+        
+        public User(){
+            
+        }
 
     public User(int userId, String usercode, String firstName, String lastName, String email, String phone, String country, int userType, byte[] salt, String password) {
         this.userId = userId;

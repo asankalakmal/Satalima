@@ -4,16 +4,15 @@
     <jsp:include page="/jsp/common/menu.jsp"></jsp:include>			
             <section class="header_text sub">
                 <img class="pageBanner" src="${pageContext.request.contextPath}/themes/images/pageBanner.png" alt="New products" >
-                <h4><span>Shopping Cart</span></h4>
+                <h4><span>YOUR ORDER</span></h4>
             </section>
             <section class="main-content">				
                 <div class="row">
                     <div class="span9">					
-                        <h4 class="title"><span class="text"><strong>Your</strong> Cart</span></h4>
+                        <h4 class="title"><span class="text">Order ID: <strong>${order.id}</strong></span></h4>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Remove</th>
                                     <th>Image</th>
                                     <th>Product Name</th>
                                     <th>Quantity</th>
@@ -22,14 +21,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="item" items="${cart.cartItems}" varStatus="index">
+                                <c:forEach var="item" items="${order.cartItems}" varStatus="index">
                                 <tr>
-                                    <td><input type="checkbox" value="option1"></td>
                                     <td><a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${item.productIndex}">
-                                            <img alt="" src="themes/images/ladies/9.jpg"></a>
+                                            <img alt="" src="themes/images/ladies/9.jpg" ></a>
                                     </td>
                                     <td>${item.product.name}</td>
-                                    <td><input type="text" value="${item.quantity}" class="input-mini"></td>
+                                    <td>${item.quantity}</td>
                                     <td>$${item.product.unitPrice}</td>
                                     <td>$${item.amount}</td>
                                 </tr>
@@ -40,27 +38,18 @@
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
-                                    <td><strong>$${cart.totalPrice}</strong></td>
+                                    <td><strong>$${order.totalPrice}</strong></td>
                                 </tr>		  
                             </tbody>
                         </table>
            
                         <hr>
                         <p class="cart-total right">
-                            <strong>Sub-Total</strong>:	$${cart.totalPrice}<br>
-                            <strong>Admin Fee</strong>: $${cart.adminFee}<br>
-                           <strong>Total</strong>: $${cart.cartTotal}<br>
+                            <strong>Sub-Total</strong>:	$${order.totalPrice}<br>
+                            <strong>Admin Fee</strong>: $${order.adminFee}<br>
+                           <strong>Total</strong>: $${order.cartTotal}<br>
                         </p>
-                        <hr/>
-                        <p class="buttons center">				
-                            <button class="btn" type="button">Update</button>
-                             <form action="${pageContext.request.contextPath}/" method="post">
-                            <button class="btn" type="button">Continue</button>
-                             </form>
-                            <form action="${pageContext.request.contextPath}/checkout" method="post">
-                            <button class="btn btn-inverse" type="submit">Checkout</button>
-                            </form>
-                        </p>					
+                        <hr/>					
                     </div>
                     <div class="span3 col">
                         <div class="block">	

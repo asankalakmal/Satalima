@@ -5,11 +5,15 @@
  */
 package com.ci6225.bidzone.ejb;
 
+import com.ci6225.bidzone.dao.ProductDao;
 import com.ci6225.bidzone.dao.ShoppingCartDao;
 import com.ci6225.bidzone.pojo.CartItem;
 import com.ci6225.bidzone.pojo.Product;
+import com.ci6225.bidzone.pojo.Seller;
+import com.ci6225.bidzone.pojo.ShoppingCart;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 /**
@@ -19,42 +23,56 @@ import javax.ejb.Stateful;
 @Stateful
 public class ShoppingCartBean implements ShoppingCartBeanLocal{
     private List<Product> productList = new ArrayList<>();
-    private List<CartItem> cartItems = new ArrayList<>();
-    private Product detailProduct;
+    private ShoppingCart cart = new ShoppingCart();
     
+    @Override
     public List<Product> searchProducts() throws Exception{
         ShoppingCartDao dao = new ShoppingCartDao();
         productList = dao.getAvailableProductList();
         return productList;
     }
-    
-    public Product getProductDetail(){
-        
-        return detailProduct;
-    }
 
+    @Override
     public List<Product> getProductList() {
         return productList;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    @Override
+    public ShoppingCart getCart() {
+        return cart;
     }
 
-    public List<CartItem> getCartItems() {
-        return cartItems;
-    }
+    @Override
+    public void addItem(int productIndex, int quantity) {
+        Product product = productList.get(productIndex);
+        
+        CartItem item = new CartItem(product.getId(), quantity, quantity * product.getUnitPrice(), productIndex);       
+        item.setProduct(product);
+        cart.getCartItems().add(item);
+        cart.setTotalPrice(cart.getTotalPrice() + item.getAmount());
+        cart.setAdminFee((float) (cart.getTotalPrice() * 0.01));
+        cart.setCartTotal(cart.getTotalPrice() + cart.getAdminFee());
+        }
 
-    public void setCartItems(List<CartItem> cartItems) {
-        this.cartItems = cartItems;
-    }
-
-    public Product getDetailProduct() {
-        return detailProduct;
-    }
-
-    public void setDetailProduct(Product detailProduct) {
-        this.detailProduct = detailProduct;
+    @Override
+    @Remove
+    public int confirmOrder(String firstName, String lastName, String email, String telephone, String address1, 
+            String address2, String city, String postalCode, String country, String comments, int userId) throws Exception{
+        cart.setFirstName(firstName);
+        cart.setLastName(lastName);
+        cart.setEmail(email);
+        cart.setTelephone(telephone);
+        cart.setAddress1(address1);
+        cart.setAddress2(address2);
+        cart.setCity(city);
+        cart.setPostalCode(postalCode);
+        cart.setCountry(country);
+        cart.setComments(comments);
+        
+        ShoppingCartDao dao = new ShoppingCartDao();
+        return dao.insertOrder(cart, userId);
     }
     
+    
 }
+

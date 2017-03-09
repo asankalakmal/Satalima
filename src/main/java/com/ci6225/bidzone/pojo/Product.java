@@ -16,33 +16,38 @@ public class Product {
     private String name;
     private String description;
     private int quantity;
-    private double unitPrice;
+    private float unitPrice;
     private int sellerId;
-    private String sellerName;
+    private Seller seller;
     private String image;
     private List<Integer> categoryList;
     
-    public Product(String name, String description, int quantity, double unitPrice, int sellerId, String image) {
+    public Product(String name, String description, int quantity, float unitPrice, String image) {
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
-        this.sellerId = sellerId;
         this.image = image;
     }
 
-    public Product(int id, String name, String description, int quantity, double unitPrice, int sellerId, String image) {
-        this(name, description, quantity, unitPrice, sellerId, image);
+    public Product(int id, String name, String description, int quantity, float unitPrice, String image) {
+        this(name, description, quantity, unitPrice, image);
         this.id = id;
     }
     
-    public Product(int id, String name, String description, int quantity, double unitPrice, String sellerName) {
+    public Product(int id, String name, String description, int quantity, float unitPrice) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
-        this.sellerName = sellerName;
+    }
+
+    public Product(String name, String description, float unitPrice, String image) {
+        this.name = name;
+        this.description = description;
+        this.unitPrice = unitPrice;
+        this.image = image;
     }
     
     public int getId() {
@@ -77,11 +82,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public double getUnitPrice() {
+    public float getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(float unitPrice) {
         this.unitPrice = unitPrice;
     }
 
@@ -101,13 +106,15 @@ public class Product {
         this.categoryList = categoryList;
     }
 
-    public String getSellerName() {
-        return sellerName;
+    public Seller getSeller() {
+        return seller;
     }
 
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
+    public void setSeller(Seller seller) {
+        this.seller = seller;
     }
+
+
     public String getImage() {
         return image;
     }

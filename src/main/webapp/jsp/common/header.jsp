@@ -19,7 +19,7 @@
                         <ul class="user-menu">	
                             <c:if test="${sessionScope.user != null}"><li>Welcome ${sessionScope.user.firstName} ${sessionScope.user.lastName} </li>
                             <li><a href="#">My Account</a></li></c:if>
-                            <li><a href="${pageContext.request.contextPath}/cart">Your Cart</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ViewCart">Your Cart</a></li>
                             <li><a href="${pageContext.request.contextPath}/cart">Checkout</a></li>					
                             <c:if test="${sessionScope.user == null}"><li><a href="${pageContext.request.contextPath}/register">Login</a></li></c:if>
                             <c:if test="${sessionScope.user != null}"><li><a href="${pageContext.request.contextPath}/Logout">Logout</a></li></c:if>

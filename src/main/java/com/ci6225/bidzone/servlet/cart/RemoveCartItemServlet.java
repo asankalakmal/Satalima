@@ -7,6 +7,7 @@ package com.ci6225.bidzone.servlet.cart;
 
 import com.ci6225.bidzone.servlet.seller.*;
 import com.ci6225.bidzone.ejb.ProductBean;
+import com.ci6225.bidzone.ejb.ShoppingCartBeanLocal;
 import com.ci6225.bidzone.pojo.User;
 import java.io.IOException;
 import javax.ejb.EJB;
@@ -21,14 +22,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ureka
  */
-@WebServlet("/RemoveProductsFormCart")
-public class RemoveProductsFromCartServlet extends HttpServlet{
-    @EJB
-    ProductBean productBean;
+@WebServlet("/RemoveCartItem")
+public class RemoveCartItemServlet extends HttpServlet{
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveProductsFromCartServlet() {
+    public RemoveCartItemServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,23 +37,21 @@ public class RemoveProductsFromCartServlet extends HttpServlet{
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		
 		try {
-                    User user = (User) request.getSession().getAttribute("user");
-                  //  productBean.addProduct(name, description, user.getUsercode());
-			request.setAttribute("successMessage", "Product Added Successfully.");
-			RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
-                rd.forward(request, response);
+                    ShoppingCartBeanLocal shoppingCartBean = (ShoppingCartBeanLocal) request.getSession().getAttribute("shoppingCartBean");
+                    
+                    int itemIndex = Integer.parseInt(request.getParameter("itemIndex"));
+                    shoppingCartBean.removeItem(itemIndex);
+                    request.setAttribute("cart", shoppingCartBean.getCart());
+                    RequestDispatcher rd = request.getRequestDispatcher("./jsp/cart/cart_items.jsp");
+                    rd.forward(request, response);
 			
 			
 		} catch (Exception e) {

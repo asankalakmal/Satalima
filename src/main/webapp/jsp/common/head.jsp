@@ -21,6 +21,7 @@
 <script src="${pageContext.request.contextPath}/themes/js/superfish.js"></script>	
 <script src="${pageContext.request.contextPath}/themes/js/jquery.scrolltotop.js"></script>
 <script src="${pageContext.request.contextPath}/themes/js/jquery.fancybox.js"></script>
+<script src="${pageContext.request.contextPath}/themes/js/bidzone.js"></script>
 <!--[if lt IE 9]>			
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <script src="${pageContext.request.contextPath}/js/respond.min.js"></script>

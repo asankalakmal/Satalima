@@ -32,6 +32,8 @@ public interface ShoppingCartBeanLocal {
     public int confirmOrder(String firstName, String lastName, String email, String telephone, String address1, 
             String address2, String city, String postalCode, String country, String comments, int userId) throws Exception;
     
-
+    public void removeItem(int itemIndex);
+    
+    public void updateCartItems(List<Integer> quantityList);
     
 }

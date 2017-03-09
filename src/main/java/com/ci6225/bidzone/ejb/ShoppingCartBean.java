@@ -5,11 +5,9 @@
  */
 package com.ci6225.bidzone.ejb;
 
-import com.ci6225.bidzone.dao.ProductDao;
 import com.ci6225.bidzone.dao.ShoppingCartDao;
 import com.ci6225.bidzone.pojo.CartItem;
 import com.ci6225.bidzone.pojo.Product;
-import com.ci6225.bidzone.pojo.Seller;
 import com.ci6225.bidzone.pojo.ShoppingCart;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +69,33 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal{
         
         ShoppingCartDao dao = new ShoppingCartDao();
         return dao.insertOrder(cart, userId);
+    }
+
+    @Override
+    public void removeItem(int itemIndex) {
+        cart.getCartItems().remove(itemIndex);
+        this.updateCartTotal();
+    }
+    
+    private void updateCartTotal(){
+        float total = 0;
+        for(CartItem item: cart.getCartItems()){
+            total += item.getAmount();
+        }
+        cart.setTotalPrice(total);
+        cart.setAdminFee((float) (cart.getTotalPrice() * 0.01));
+        cart.setCartTotal(cart.getTotalPrice() + cart.getAdminFee());
+    }
+
+    @Override
+    public void updateCartItems(List<Integer> quantityList) {
+        int index = 0;
+        for(CartItem item: cart.getCartItems()){
+           item.setQuantity(quantityList.get(index));
+           item.setAmount(item.getQuantity() * item.getProduct().getUnitPrice());
+           index++;
+        }
+        this.updateCartTotal();
     }
     
     

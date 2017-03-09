@@ -22,8 +22,8 @@
                                     </td>
                                     <td>${item.product.name}</td>
                                     <td><input type="text" value="${item.quantity}" class="input-mini" id="item_quantity-${index.index}"></td>
-                                    <td>$${item.product.unitPrice}</td>
-                                    <td>$${item.amount}</td>
+                                    <td><fmt:formatNumber value="${item.product.unitPrice}" type="currency"/></td>
+                                    <td><fmt:formatNumber value="${item.amount}" type="currency"/></td>
                                 </tr>
                                 </c:forEach>
                                 <tr>
@@ -32,14 +32,14 @@
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
-                                    <td><strong>$${cart.totalPrice}</strong></td>
+                                    <td><strong><fmt:formatNumber value="${cart.totalPrice}" type="currency"/></strong></td>
                                 </tr>		  
                             </tbody>
                         </table>
            
                         <hr>
                         <p class="cart-total right">
-                            <strong>Sub-Total</strong>:	$${cart.totalPrice}<br>
-                            <strong>Admin Fee</strong>: $${cart.adminFee}<br>
-                           <strong>Total</strong>: $${cart.cartTotal}<br>
+                            <strong>Sub-Total</strong>:	<fmt:formatNumber value="${cart.totalPrice}" type="currency"/><br>
+                            <strong>Admin Fee</strong>: <fmt:formatNumber value="${cart.adminFee}" type="currency"/><br>
+                           <strong>Total</strong>: <fmt:formatNumber value="${cart.cartTotal}" type="currency"/><br>
                         </p>

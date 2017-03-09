@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/jsp/common/header.jsp"></jsp:include>
     <div id="wrapper" class="container">
     <jsp:include page="/jsp/common/menu.jsp"></jsp:include>			
@@ -28,8 +29,8 @@
                                     </td>
                                     <td>${item.product.name}</td>
                                     <td>${item.quantity}</td>
-                                    <td>$${item.product.unitPrice}</td>
-                                    <td>$${item.amount}</td>
+                                    <td><fmt:formatNumber value="${item.product.unitPrice}" type="currency"/></td>
+                                    <td><fmt:formatNumber value="${item.amount}" type="currency"/></td>
                                 </tr>
                                 </c:forEach>
                                 <tr>
@@ -38,16 +39,16 @@
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
-                                    <td><strong>$${order.totalPrice}</strong></td>
+                                    <td><strong><fmt:formatNumber value="${order.totalPrice}" type="currency"/></strong></td>
                                 </tr>		  
                             </tbody>
                         </table>
            
                         <hr>
                         <p class="cart-total right">
-                            <strong>Sub-Total</strong>:	$${order.totalPrice}<br>
-                            <strong>Admin Fee</strong>: $${order.adminFee}<br>
-                           <strong>Total</strong>: $${order.cartTotal}<br>
+                            <strong>Sub-Total</strong>:	<fmt:formatNumber value="${order.totalPrice}" type="currency"/><br>
+                            <strong>Admin Fee</strong>: <fmt:formatNumber value="${order.adminFee}" type="currency"/><br>
+                           <strong>Total</strong>: <fmt:formatNumber value="${order.cartTotal}" type="currency"/><br>
                         </p>
                         <hr/>					
                     </div>

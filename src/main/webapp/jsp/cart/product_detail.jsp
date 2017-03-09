@@ -40,7 +40,7 @@
                            <span>${detailProduct.quantity} units available</span><br>
                             </c:if>
                         </address>									
-                        <h4><strong>Price: $${detailProduct.unitPrice}</strong></h4>
+                        <h4><strong>Price: <fmt:formatNumber value="${detailProduct.unitPrice}" type="currency"/></strong></h4>
                     </div>
                     <div class="span5">
                         <form class="form-inline" action="${pageContext.request.contextPath}/AddItem" method="post">    

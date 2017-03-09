@@ -97,9 +97,6 @@
                                     <input type="password" placeholder="Enter your password" name="confirmPassword" class="input-xlarge">
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <p>Now that we know who you are. I'm not a mistake! In a comic, you know how you can tell who the arch-villain's going to be?</p>
-                            </div>
                             <hr>
                             <div class="actions"><input tabindex="9" class="btn btn-inverse large" type="submit" value="Create your account"></div>
                         </fieldset>

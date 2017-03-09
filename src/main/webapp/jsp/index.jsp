@@ -35,41 +35,41 @@
                         </h4>
                         <div id="myCarousel-2" class="myCarousel carousel slide">
                             <div class="carousel-inner">
-     
-                                        <c:forEach var="product" items="${availableProductList}" varStatus="index">
-                                             
-                                            <c:if test="${index.index % 8 == 0}">
-                                                
-                                                <div class="item <c:if test='${index.index == 0}'>active</c:if>">
-                                                <ul class="thumbnails">
-                                            </c:if>
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                <p><a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
-                                                <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="title">${product.name}</a><br/>
-                                                <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="category">${product.seller.sellerName}</a>
-                                                <p class="price"><fmt:formatNumber value="${product.unitPrice}" type="currency"/></p>
-                                            </div>
-                                        </li>
-                                        <c:if test="${index.index % 8 == 7}">
-                                             </ul>
+
+                                <c:forEach var="product" items="${availableProductList}" varStatus="index">
+
+                                    <c:if test="${index.index % 8 == 0}">
+
+                                        <div class="item <c:if test='${index.index == 0}'>active</c:if>">
+                                            <ul class="thumbnails">
+                                                </c:if>
+                                                <li class="span3">
+                                                    <div class="product-box">
+                                                        <span class="sale_tag"></span>
+                                                        <p><a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}"><img width="100" height="100" src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
+                                                        <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="title">${product.name}</a><br/>
+                                                        <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="category">${product.seller.sellerName}</a>
+                                                        <p class="price"><fmt:formatNumber value="${product.unitPrice}" type="currency"/></p>
+                                                    </div>
+                                                </li>
+                                                <c:if test="${index.index % 8 == 7}">
+                                            </ul>
                                         </div>
-                                            
-                                        </c:if>
-                                        </c:forEach>
-                      
+
+                                    </c:if>
+                                </c:forEach>
+
                             </div>							
                         </div>
                     </div>						
                 </div>
-                	
+
             </div>				
         </div>
     </section>
     <jsp:include page="/jsp/common/footer.jsp"></jsp:include>                                            
-</div>
-<script src="${pageContext.request.contextPath}/themes/js/common.js"></script>
+    </div>
+    <script src="${pageContext.request.contextPath}/themes/js/common.js"></script>
 <script src="${pageContext.request.contextPath}/themes/js/jquery.flexslider-min.js"></script>
 <script type="text/javascript">
     $(function () {

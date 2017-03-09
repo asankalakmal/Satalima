@@ -451,7 +451,8 @@ section.navbar{
 	display:inline-block;
 	font-weight:bold;
 	font-size:11px;
-	margin:15px 0 0px 0;
+	margin: 0 5px;
+        height: 40px;
 }
 .product-box a.category{
 	color:#eb4800;
@@ -791,4 +792,12 @@ section.our_client .row{
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.logo img {
+    width: 115px;
+}
+
+.control-group {
+    margin-bottom: 0px!important;
 }

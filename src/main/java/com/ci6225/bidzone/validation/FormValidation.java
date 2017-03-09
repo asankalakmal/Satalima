@@ -53,6 +53,34 @@ public class FormValidation {
 
         return isValid;
     }
+    
+    public boolean validateSignup(int userType, String userCode, String firstName, String lastName, 
+            String email, String phone, String country, String password, String confirmPassword) {
+
+        boolean isValid = true;
+        
+        if (!(userType==1 || userType==2)) {
+            errorMessages.add("Please select User type");
+            isValid = false;
+        }
+        
+        isValid = setInputErrorMessage(userCode, "UserName", 10, 3);
+        isValid = setInputErrorMessage(firstName, "First Name", 20, 3);
+        isValid = setInputErrorMessage(lastName, "Last Name", 20, 3);
+        isValid = setInputErrorMessage(email, "Email", 20, 3);
+        //isValid = setInputErrorMessage(phone, "Phone", 10, 3);
+        //isValid = setInputErrorMessage(country, "country", 20, 3);
+        isValid = setInputErrorMessage(password, "Password", 20, 5);
+        
+        if(confirmPassword.trim().length() == 0) {
+            errorMessages.add("Please provide Confirm Password");
+        } else if (!password.trim().equals(confirmPassword.trim())) {
+            errorMessages.add("Password does not match with Confirm Password");
+            isValid = false;
+        } 
+
+        return isValid;
+    }
 
     private boolean isValidInt(String value) {
         try {
@@ -70,6 +98,23 @@ public class FormValidation {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+    
+    private boolean setInputErrorMessage(String field, String fieldName, int maxL, int minL) {
+        boolean isValid = true;
+        
+        if(field.trim().length() == 0) {
+            errorMessages.add("Please provide "+fieldName);
+            isValid = false;
+        } else if (field.trim().length() < minL) {
+            errorMessages.add(fieldName+ " field min length is "+minL);
+            isValid = false;
+        } else if (field.trim().length() > maxL) {
+            errorMessages.add(fieldName+ " field min length is "+maxL);
+            isValid = false;
+        }
+        
+        return isValid;
     }
 
     public List<String> getErrorMessages() {

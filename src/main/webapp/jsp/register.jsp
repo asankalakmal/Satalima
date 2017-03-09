@@ -35,7 +35,7 @@
                 </div>
                 <div class="span7">					
                     <h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
-                    <form action="SignupServlet" method="post" class="form-stacked">
+                    <form action="${pageContext.request.contextPath}/Signup" method="post" class="form-stacked">
                         <fieldset>
                             <div class="control-group">
 
@@ -96,9 +96,6 @@
                                 <div class="controls">
                                     <input type="password" placeholder="Enter your password" name="confirmPassword" class="input-xlarge">
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <p>Now that we know who you are. I'm not a mistake! In a comic, you know how you can tell who the arch-villain's going to be?</p>
                             </div>
                             <hr>
                             <div class="actions"><input tabindex="9" class="btn btn-inverse large" type="submit" value="Create your account"></div>

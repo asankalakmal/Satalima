@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/jsp/common/header.jsp"></jsp:include>
     <div id="wrapper" class="container">
     <jsp:include page="/jsp/common/menu.jsp"></jsp:include>
@@ -27,51 +28,6 @@
                 <div class="row">
                     <div class="span12">
                         <h4 class="title">
-                            <span class="pull-left"><span class="text"><span class="line">On-going <strong>Bids</strong></span></span></span>
-                            <span class="pull-right">
-                                <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
-                            </span>
-                        </h4>
-                        <div id="myCarousel" class="myCarousel carousel slide">
-                            <div class="carousel-inner">
-                                <div class="active item">
-                                    <ul class="thumbnails">												
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <span class="sale_tag"></span>
-                                                <p><a href="product_detail.html"><img src="${pageContext.request.contextPath}/themes/images/ladies/1.jpg" alt="" /></a></p>
-                                                <a href="product_detail.html" class="title">Ut wisi enim ad</a><br/>
-                                                <a href="products.html" class="category">Commodo consequat</a>
-                                                <p class="price">$17.25</p>
-                                            </div>
-                                        </li>
-                                       
-                                    </ul>
-                                </div>
-                                <div class="item">
-                                    <c:forEach var="product" items="${availableProductList}">
-                                        <ul class="thumbnails">
-                                        <li class="span3">
-                                            <div class="product-box">
-                                                <p><a href="product_detail.html"><img src="${pageContext.request.contextPath}/themes/images/ladies/5.jpg" alt="" /></a></p>
-                                                <a href="product_detail.html" class="title">Know exactly</a><br/>
-                                                <a href="products.html" class="category">Quis nostrud</a>
-                                                <p class="price">$22.30</p>
-                                            </div>
-                                        </li>                                        
-                         																																
-                                    </ul>
-                                    </c:forEach>
-                                    
-                                </div>
-                            </div>							
-                        </div>
-                    </div>						
-                </div>
-                <br/>
-                <div class="row">
-                    <div class="span12">
-                        <h4 class="title">
                             <span class="pull-left"><span class="text"><span class="line">Latest <strong>Products</strong></span></span></span>
                             <span class="pull-right">
                                 <a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
@@ -93,7 +49,7 @@
                                                 <p><a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}"><img src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
                                                 <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="title">${product.name}</a><br/>
                                                 <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="category">${product.seller.sellerName}</a>
-                                                <p class="price">$25.50</p>
+                                                <p class="price"><fmt:formatNumber value="${product.unitPrice}" type="currency"/></p>
                                             </div>
                                         </li>
                                         <c:if test="${index.index % 8 == 7}">

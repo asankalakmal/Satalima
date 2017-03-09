@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/jsp/common/header.jsp"></jsp:include>
     <div id="wrapper" class="container">
     <jsp:include page="/jsp/common/menu.jsp"></jsp:include>			
@@ -10,51 +11,13 @@
                 <div class="row">
                     <div class="span9">					
                         <h4 class="title"><span class="text"><strong>Your</strong> Cart</span></h4>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Remove</th>
-                                    <th>Image</th>
-                                    <th>Product Name</th>
-                                    <th>Quantity</th>
-                                    <th>Unit Price</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="item" items="${cart.cartItems}" varStatus="index">
-                                <tr>
-                                    <td><input type="checkbox" value="option1"></td>
-                                    <td><a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${item.productIndex}">
-                                            <img alt="" src="themes/images/ladies/9.jpg"></a>
-                                    </td>
-                                    <td>${item.product.name}</td>
-                                    <td><input type="text" value="${item.quantity}" class="input-mini"></td>
-                                    <td>$${item.product.unitPrice}</td>
-                                    <td>$${item.amount}</td>
-                                </tr>
-                                </c:forEach>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td><strong>$${cart.totalPrice}</strong></td>
-                                </tr>		  
-                            </tbody>
-                        </table>
-           
-                        <hr>
-                        <p class="cart-total right">
-                            <strong>Sub-Total</strong>:	$${cart.totalPrice}<br>
-                            <strong>Admin Fee</strong>: $${cart.adminFee}<br>
-                           <strong>Total</strong>: $${cart.cartTotal}<br>
-                        </p>
+                        <div id="cart_items">
+                        <jsp:include page="/jsp/cart/cart_items.jsp" ></jsp:include>
+                        </div>
                         <hr/>
                         <p class="buttons center">				
-                            <button class="btn" type="button">Update</button>
-                             <form action="${pageContext.request.contextPath}/" method="post">
+                            <button class="btn" type="button" onclick="updateCart()">Update</button>
+                             <form action="${pageContext.request.contextPath}" method="get">
                             <button class="btn" type="button">Continue</button>
                              </form>
                             <form action="${pageContext.request.contextPath}/checkout" method="post">

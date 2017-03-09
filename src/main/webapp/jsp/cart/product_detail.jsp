@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/jsp/common/header.jsp"></jsp:include>
     <div id="wrapper" class="container">
     <jsp:include page="/jsp/common/menu.jsp"></jsp:include>
@@ -39,7 +40,7 @@
                            <span>${detailProduct.quantity} units available</span><br>
                             </c:if>
                         </address>									
-                        <h4><strong>Price: $${detailProduct.unitPrice}</strong></h4>
+                        <h4><strong>Price: <fmt:formatNumber value="${detailProduct.unitPrice}" type="currency"/></strong></h4>
                     </div>
                     <div class="span5">
                         <form class="form-inline" action="${pageContext.request.contextPath}/AddItem" method="post">    

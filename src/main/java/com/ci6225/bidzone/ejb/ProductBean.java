@@ -24,7 +24,7 @@ public class ProductBean {
 
     public void addProduct(String name, String description, int userId, int quantity, float unitPrice, FileItem image, String uploadPath) throws Exception {
         ProductDao productDao = new ProductDao();
-        String productName = uploadProductImage(image, userId, uploadPath);
+        String productName = uploadProductImage(image, uploadPath+"/"+Integer.toString(userId));
         Product product = new Product(name, description, quantity, unitPrice, productName);
         Seller seller = new Seller(userId);
         product.setSeller(seller);
@@ -33,21 +33,25 @@ public class ProductBean {
 
     public void updateProduct(int id, String name, String description, int quantity, float unitPrice, int userId, FileItem image, String uploadPath) throws Exception {
         ProductDao productDao = new ProductDao();
-        String productName = uploadProductImage(image, userId, uploadPath);
+        String productName = uploadProductImage(image, uploadPath+"/"+Integer.toString(userId));
         Product product = new Product(id, name, description, quantity, unitPrice, productName);
         Seller seller = new Seller(userId);
         product.setSeller(seller);
         productDao.updateProduct(product, userId);
     }
 
-    private String uploadProductImage(FileItem image, int userId, String uploadPath) throws Exception {
+    private String uploadProductImage(FileItem image, String uploadPath) throws Exception {
+
+        if (CommonUtil.isSetDirectory(uploadPath)) {
+            String fileName = new File(image.getName()).getName();
+            String newFileName = CommonUtil.imageNameGenerate(fileName);
+            String filePath = uploadPath + File.separator + newFileName;
+            File uploadedFile = new File(filePath);
+            image.write(uploadedFile);
+            return newFileName;
+        }
         
-        String fileName = new File(image.getName()).getName();
-        String newFileName = CommonUtil.imageNameGenerate(fileName, userId);
-        String filePath = uploadPath + File.separator + newFileName;
-        File uploadedFile = new File(filePath);
-        image.write(uploadedFile);
-        return newFileName;
+        return null;
     }
 
 }

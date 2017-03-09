@@ -65,16 +65,6 @@ public class AddProductServlet extends HttpServlet {
 
         // constructs the folder where uploaded file will be stored
         String uploadFolder = getServletContext().getRealPath("") + "/productImages";
-
-        // Check that we have a file upload request
-        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-
-        if (!isMultipart) {
-            //processProblem = true;
-            //processError = "System Error (code: news-001).";
-            //System.out.println(processError);
-        }
-
         // Create a factory for disk-based file items
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setSizeThreshold(5000 * 1024);

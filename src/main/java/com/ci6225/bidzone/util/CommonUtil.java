@@ -5,6 +5,7 @@
  */
 package com.ci6225.bidzone.util;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -13,9 +14,24 @@ import java.util.Date;
  */
 public class CommonUtil {
 
-    public static String imageNameGenerate(String oldName, int userId) {
+    public static String imageNameGenerate(String oldName) {
         Date date = new Date();
         long time = date.getTime();
-        return userId + "." + time + "." + oldName;
+        return time + "." + oldName;
+    }
+    
+    public static boolean isSetDirectory(String dir) {
+        
+        if(dir == null || dir.trim().equals("")) {
+            return false;
+        }
+        
+        File files = new File(dir);
+        if (!files.exists()) {
+            if (!files.mkdirs()) {
+                return true;
+            } 
+        }
+        return true;
     }
 }

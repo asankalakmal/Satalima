@@ -35,7 +35,7 @@
                 </div>
                 <div class="span7">					
                     <h4 class="title"><span class="text"><strong>Register</strong> Form</span></h4>
-                    <form action="SignupServlet" method="post" class="form-stacked">
+                    <form action="${pageContext.request.contextPath}/Signup" method="post" class="form-stacked">
                         <fieldset>
                             <div class="control-group">
 

@@ -9,6 +9,7 @@ import com.ci6225.bidzone.dao.ProductDao;
 import com.ci6225.bidzone.pojo.Product;
 import com.ci6225.bidzone.pojo.Seller;
 import com.ci6225.bidzone.util.CommonUtil;
+import com.ci6225.bidzone.util.Properties;
 import java.io.File;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -21,10 +22,12 @@ import org.apache.commons.fileupload.FileItem;
 @Stateless
 public class ProductBean {
 
-    public void addProduct(String name, String description, int userId, int quantity, float unitPrice, FileItem image, String uploadPath) throws Exception {
+    private final String imagePath = Properties.getProperty("ACTUAL_IMAGE_PATH");
+    
+    public void addProduct(String name, String description, int userId, int quantity, float unitPrice, FileItem image) throws Exception {
         ProductDao productDao = new ProductDao();
-        String productName = uploadProductImage(image, uploadPath+"/"+Integer.toString(userId));
-        Product product = new Product(name, description, quantity, unitPrice, productName);
+        String imageName = uploadProductImage(image, imagePath+"/"+Integer.toString(userId));
+        Product product = new Product(name, description, quantity, unitPrice, imageName);
         Seller seller = new Seller(userId);
         product.setSeller(seller);
         productDao.addProduct(product, userId);

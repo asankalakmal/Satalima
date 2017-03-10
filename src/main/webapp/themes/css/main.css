@@ -453,7 +453,7 @@ section.navbar{
 	display:inline-block;
 	font-weight:bold;
 	font-size:11px;
-	margin: 0 5px;
+	margin: 5px 0 0 0;
         height: 40px;
 }
 .product-box a.category{
@@ -811,4 +811,37 @@ section.header_text.sub_title{
 
 .alert {
     margin: 20px 0 0 0!important;
+}
+
+.file-upload {
+    margin-bottom: 20px!important;
+}
+
+.file-upload input[type="file"]{
+    line-height: 26px!important;
+}
+
+.radiobtn .controls {
+    float: left;
+    width: 20px;
+}
+
+.radiobtn label{
+    line-height: 28px;
+}
+
+img.product-list-img {
+    width: 75px
+}
+
+img.product-detail-image {
+    height: 350px;
+}
+
+.product-detail-box {
+    margin-bottom: 20px;
+}
+
+.clickable-row {
+    cursor: pointer;
 }

@@ -40,14 +40,14 @@ public class LoginServlet extends HttpServlet {
                     errorList.add("Invalid username or password.");
                     request.setAttribute("errorMessage", errorList);
                     request.setAttribute("username", username);
-                    RequestDispatcher rd = request.getRequestDispatcher("/register");
+                    RequestDispatcher rd = request.getRequestDispatcher("./register");
                     rd.forward(request, response);
                 } else {
                     request.getSession().setAttribute("user", user);
                     if (user.getUserType() == Constants.ADMIN_ROLE) {
                         response.sendRedirect("./");
                     } else if (user.getUserType() == Constants.SELLER_ROLE) {
-                        response.sendRedirect("./jsp/seller/add_product.jsp");
+                        response.sendRedirect("./addProduct");
                     } else {
                         response.sendRedirect("./");
                     }
@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
                 errorList.addAll(validation.getErrorMessages());
                 request.setAttribute("errorMessage", errorList);
                 request.setAttribute("username", username);
-                RequestDispatcher rd = request.getRequestDispatcher("/register");
+                RequestDispatcher rd = request.getRequestDispatcher("./register");
                 rd.forward(request, response);
             }
 

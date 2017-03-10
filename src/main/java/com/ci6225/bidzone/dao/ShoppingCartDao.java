@@ -43,8 +43,11 @@ public class ShoppingCartDao {
                                 float unitPrice = rs.getFloat("unit_price");
                                 String sellerName = rs.getString("seller_name");
                                 String sellerDescription = rs.getString("seller_description");
-                                Product product = new Product(id, name, description, quantity, unitPrice);
+                                String productImage = rs.getString("image_path");
+                                int sellerId = rs.getInt("seller_id");
+                                Product product = new Product(id, name, description, quantity, unitPrice, productImage);
                                 Seller seller = new Seller(sellerName, sellerDescription);
+                                seller.setUserId(sellerId);
                                 product.setSeller(seller);
                                 productList.add(product);
 			} 

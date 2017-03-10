@@ -20,28 +20,22 @@ public class FormValidation {
     public boolean validateAddProduct(String name, String description, String quantity, String unitPrice, FileItem image) {
 
         boolean isValid = true;
-        if (name.trim().length() < 3) {
-            errorMessages.add("Product Name field min length is 3");
-            isValid = false;
-        } else if (name.trim().length() > 100) {
-            errorMessages.add("Product Name field max length is 100");
-            isValid = false;
-        }
+        
+        isValid = setInputErrorMessage(name, "Product Name", 30, 3);
+        isValid = setInputErrorMessage(description, "Description", 400, 3);
 
-        if (description.trim().length() < 5) {
-            errorMessages.add("Product description field min length is 50");
+        if (quantity.trim().length() == 0) {
+            errorMessages.add("Please provide your quantity");
             isValid = false;
-        } else if (description.trim().length() > 2000) {
-            errorMessages.add("Product description field max length is 2000");
-            isValid = false;
-        }
-
-        if (quantity.trim().length() == 0 || !isValidInt(quantity)) {
+        } else if (!isValidInt(quantity)) {
             errorMessages.add("Please provide valid quantity");
             isValid = false;
         }
-
-        if (unitPrice.trim().length() == 0 || !isValidDouble(unitPrice)) {
+        
+        if (unitPrice.trim().length() == 0) {
+            errorMessages.add("Please provide your quantity");
+            isValid = false;
+        } else if (!isValidDouble(unitPrice)) {
             errorMessages.add("Please provide valid price");
             isValid = false;
         }

@@ -51,7 +51,7 @@ public class AddUserBidServlet extends HttpServlet{
 		
 		try {
                     User user = (User) request.getSession().getAttribute("user");
-                    productBean.addProduct(name, description, 0, 0, 0, null, null);
+                    productBean.addProduct(name, description, 0, 0, 0, null);
 			request.setAttribute("successMessage", "Product Added Successfully.");
 			RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
                 rd.forward(request, response);

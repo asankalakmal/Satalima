@@ -1,9 +1,9 @@
 <jsp:include page="/jsp/common/header.jsp"></jsp:include>
     <div id="wrapper" class="container">
-    <jsp:include page="/jsp/common/menu.jsp"></jsp:include>		
+    <jsp:include page="/jsp/common/menu.jsp"></jsp:include>
+    <jsp:include page="/jsp/common/messages.jsp"></jsp:include>
         <section class="header_text sub">
-            <img class="pageBanner" src="themes/images/pageBanner.png" alt="New products" >
-            <h4><span>Add New Product</span></h4>
+            <h2><span>Add New Product</span></h2>
         </section>			
         <section class="main-content">				
             <div class="row">
@@ -15,28 +15,29 @@
                             <div class="control-group">
                                 <label class="control-label">Name</label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Product Name" name="name" id="name" class="input-xlarge">
+                                    <input type="text" placeholder="Product Name" name="name" id="name" class="input-xlarge" value="${name}">
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label">Description</label>
-                                <div class="controls">
-                                    <input type="text" placeholder="Product Description" id="description" name="description" class="input-xlarge">
-                                </div>
-                            </div>
+                            
                             <div class="control-group">
                                 <label class="control-label">Unit Price</label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Unit Price" id="unitPrice" name="unitPrice" class="input-xlarge">
+                                    <input type="text" placeholder="Unit Price" id="unitPrice" name="unitPrice" class="input-xlarge" value="${unitPrice}">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Quantity</label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Quantity" id="quantity" name="quantity" class="input-xlarge">
+                                    <input type="text" placeholder="Quantity" id="quantity" name="quantity" class="input-xlarge" value="${quantity}">
                                 </div>
                             </div>
                             <div class="control-group">
+                                <label class="control-label">Description</label>
+                                <div class="controls">
+                                    <textarea placeholder="Product Description" id="description" name="description" class="input-xlarge">${description}</textarea>
+                                </div>
+                            </div>
+                            <div class="control-group file-upload">
                                 <label class="control-label">Product Image</label>
                                 <div class="controls">
                                     <input type="file" placeholder="Quantity" id="quantity" name="productImage" class="input-xlarge">

@@ -75,7 +75,9 @@ public class ProductDao {
 		try{
 			con = ConnectionUtil.createConnection();
 			ps = con.prepareStatement(selectStatement);    
+                        ps.setInt(1, sellerId);
 			rs = ps.executeQuery();
+                        
 
 			while (rs.next()) {
 				int id = rs.getInt("id");

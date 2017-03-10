@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class SessionFilter
  */
-//@WebFilter("*")
+@WebFilter("/*")
 public class SessionFilter implements Filter {
 
     public SessionFilter() {
@@ -28,23 +28,21 @@ public class SessionFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession(false);
-        String loginURI = req.getContextPath() + "/LoginServlet";
-        String loginURI1 = req.getContextPath() + "/login.jsp";
+        String loginURI = req.getContextPath() + "/Login";
+        String loginURI1 = req.getContextPath() + "/register";
         
-        String signUpURI = req.getContextPath() + "/signup.jsp";
-        String signUpURI2 = req.getContextPath() + "/signupSuccess.jsp";
-        String signUpURI3 = req.getContextPath() + "/SignupServlet";
+        String signUpURI3 = req.getContextPath() + "/Signup";
 
         boolean loggedIn = session != null && session.getAttribute("user") != null;
         boolean loginRequest = req.getRequestURI().equals(loginURI) || req.getRequestURI().equals(loginURI1);
-        boolean signupRequest = req.getRequestURI().equals(signUpURI) || req.getRequestURI().equals(signUpURI2) || req.getRequestURI().equals(signUpURI3);
-        boolean filter = req.getRequestURI().contains("Servlet") || req.getRequestURI().equals(req.getContextPath()) || 
+        boolean signupRequest = req.getRequestURI().equals(signUpURI3);
+        boolean filter = req.getRequestURI().equals(req.getContextPath()) || 
         		req.getRequestURI().equals(req.getContextPath()+"/");
 
-        if (loggedIn || loginRequest || !filter || signupRequest) {
+        if (loggedIn || loginRequest || signupRequest || filter) {
             chain.doFilter(req, res);
         } else {
-            res.sendRedirect("login.jsp");
+            res.sendRedirect(req.getContextPath() + "/register");
             return;
         }
 	}

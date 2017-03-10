@@ -60,7 +60,7 @@ public class ViewProductListServlet extends HttpServlet {
             User user = (User) request.getSession().getAttribute("user");
             List<Product> productList = productBean.getProductList(user.getUserId());
             request.setAttribute("productList", productList);
-            RequestDispatcher rd = request.getRequestDispatcher("./seller/product_list.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("./jsp/seller/product_list.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();

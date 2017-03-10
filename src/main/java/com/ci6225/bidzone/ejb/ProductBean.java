@@ -6,12 +6,11 @@
 package com.ci6225.bidzone.ejb;
 
 import com.ci6225.bidzone.dao.ProductDao;
-import com.ci6225.bidzone.dao.UserDao;
 import com.ci6225.bidzone.pojo.Product;
 import com.ci6225.bidzone.pojo.Seller;
 import com.ci6225.bidzone.util.CommonUtil;
-import com.ci6225.bidzone.util.PasswordUtil;
 import java.io.File;
+import java.util.List;
 import javax.ejb.Stateless;
 import org.apache.commons.fileupload.FileItem;
 
@@ -52,6 +51,11 @@ public class ProductBean {
         }
         
         return null;
+    }
+    
+    public List<Product> getProductList(int sellerId) throws Exception{
+        ProductDao dao = new ProductDao();
+        return dao.getProductListBySellerId(sellerId);
     }
 
 }

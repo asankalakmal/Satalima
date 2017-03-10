@@ -46,7 +46,14 @@
                                                 <li class="span3">
                                                     <div class="product-box">
                                                         <span class="sale_tag"></span>
-                                                        <p><a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}"><img width="100" height="100" src="${pageContext.request.contextPath}/themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
+                                                        <p><a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}">
+                                                                <c:if test="${product.image == null}">
+                                                                <img width="100" height="100" src="${pageContext.request.contextPath}/themes/images/no_image.png" alt="" />
+                                                                </c:if>
+                                                                <c:if test="${product.image != null}">
+                                                                <img width="100" height="100" src="${product.image}" alt="" />
+                                                                </c:if>
+                                                            </a></p>
                                                         <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="title">${product.name}</a><br/>
                                                         <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="category">${product.seller.sellerName}</a>
                                                         <p class="price"><fmt:formatNumber value="${product.unitPrice}" type="currency"/></p>

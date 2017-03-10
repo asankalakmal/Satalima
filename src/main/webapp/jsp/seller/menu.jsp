@@ -1,6 +1,6 @@
 <section class="navbar main-menu">
     <div class="navbar-inner main-menu">				
-        <a href="./" class="logo pull-left"><img src="${pageContext.request.contextPath}/themes/images/logo.png" class="site_logo" alt=""></a>
+        <a href="${pageContext.request.contextPath}/" class="logo pull-left"><img src="${pageContext.request.contextPath}/themes/images/logo.png" class="site_logo" alt=""></a>
         <nav id="menu" class="pull-right">
             <ul>
                 <li><a href="./product_list.jsp">Products</a>					

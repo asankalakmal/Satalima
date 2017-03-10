@@ -30,7 +30,7 @@ public class ProductDao {
 		ps = con.prepareStatement(insertStatement);    
 		ps.setString(1, product.getName());
 		ps.setString(2, product.getDescription());
-                ps.setInt(3, product.getSellerId());
+                ps.setInt(3, userId);
                 ps.setDouble(4, product.getUnitPrice());
                 ps.setInt(5, product.getQuantity());
 		ps.setInt(6, userId);
@@ -68,7 +68,7 @@ public class ProductDao {
      
      public List<Product> getProductListBySellerId(int sellerId) throws Exception{
          List<Product> productList = new ArrayList<>();
-         String selectStatement = "select * from product where seller_id = ?";  
+         String selectStatement = "select * from product where seller_id = ? and delete_flag='F'";  
 		Connection con = null;
 		PreparedStatement ps = null;
 		       ResultSet rs = null;

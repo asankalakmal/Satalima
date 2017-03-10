@@ -31,6 +31,7 @@ public class SessionFilter implements Filter {
         String loginURI = req.getContextPath() + "/Login";
         String loginURI1 = req.getContextPath() + "/register";
         
+        
         String signUpURI3 = req.getContextPath() + "/Signup";
 
         boolean loggedIn = session != null && session.getAttribute("user") != null;
@@ -38,8 +39,11 @@ public class SessionFilter implements Filter {
         boolean signupRequest = req.getRequestURI().equals(signUpURI3);
         boolean filter = req.getRequestURI().equals(req.getContextPath()) || 
         		req.getRequestURI().equals(req.getContextPath()+"/");
+        boolean resourceFile = req.getRequestURI().toLowerCase().endsWith("js") || req.getRequestURI().toLowerCase().endsWith("css")
+                    || req.getRequestURI().toLowerCase().endsWith("png") || req.getRequestURI().toLowerCase().endsWith("jpg")
+                    || req.getRequestURI().toLowerCase().endsWith("jpeg");
 
-        if (loggedIn || loginRequest || signupRequest || filter) {
+        if (loggedIn || loginRequest || signupRequest || filter || resourceFile) {
             chain.doFilter(req, res);
         } else {
             res.sendRedirect(req.getContextPath() + "/register");

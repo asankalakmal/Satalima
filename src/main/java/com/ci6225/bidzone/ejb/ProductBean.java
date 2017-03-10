@@ -35,8 +35,8 @@ public class ProductBean {
 
     public void updateProduct(int id, String name, String description, int quantity, float unitPrice, int userId, FileItem image, String uploadPath) throws Exception {
         ProductDao productDao = new ProductDao();
-        String productName = uploadProductImage(image, uploadPath+"/"+Integer.toString(userId));
-        Product product = new Product(id, name, description, quantity, unitPrice, productName);
+       // String productName = uploadProductImage(image, uploadPath+"/"+Integer.toString(userId));
+        Product product = new Product(id, name, description, quantity, unitPrice);
         Seller seller = new Seller(userId);
         product.setSeller(seller);
         productDao.updateProduct(product, userId);
@@ -59,6 +59,11 @@ public class ProductBean {
     public List<Product> getProductList(int sellerId) throws Exception{
         ProductDao dao = new ProductDao();
         return dao.getProductListBySellerId(sellerId);
+    }
+    
+    public Product getProduct(int productId) throws Exception{
+        ProductDao dao = new ProductDao();
+        return dao.getProduct(productId);
     }
 
 }

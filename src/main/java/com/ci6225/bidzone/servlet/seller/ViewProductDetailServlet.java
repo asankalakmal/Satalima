@@ -6,8 +6,13 @@
 package com.ci6225.bidzone.servlet.seller;
 
 import com.ci6225.bidzone.ejb.ProductBean;
+import com.ci6225.bidzone.pojo.Product;
 import com.ci6225.bidzone.pojo.User;
+import com.ci6225.bidzone.validation.FormValidation;
+import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,13 +20,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
  * @author Ureka
  */
-@WebServlet("/UpdateProduct")
-public class UpdateProductServlet extends HttpServlet {
+@WebServlet("/ViewProductDetail")
+public class ViewProductDetailServlet extends HttpServlet {
 
     @EJB
     ProductBean productBean;
@@ -29,7 +38,7 @@ public class UpdateProductServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateProductServlet() {
+    public ViewProductDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,8 +48,7 @@ public class UpdateProductServlet extends HttpServlet {
      * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        response.getWriter().append("Served at: ").append(request.getContextPath());
+        doPost(request, response);
     }
 
     /**
@@ -48,18 +56,12 @@ public class UpdateProductServlet extends HttpServlet {
      * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            String name = request.getParameter("name");
-            String description = request.getParameter("description");
-            float unitPrice = Float.parseFloat(request.getParameter("unitPrice"));
-            int quantity = Integer.parseInt(request.getParameter("quantity"));
-            int id = Integer.parseInt(request.getParameter("id"));
-            User user = (User) request.getSession().getAttribute("user");
-            productBean.updateProduct(id, name, description, quantity, unitPrice, user.getUserId(), null, null);
-            request.setAttribute("successMessage", "Product Updated Successfully.");
-            RequestDispatcher rd = request.getRequestDispatcher("./ViewProductList");
+      try {
+          int productId = Integer.parseInt(request.getParameter("productId"));
+            Product product = productBean.getProduct(productId);
+            request.setAttribute("product", product);
+            RequestDispatcher rd = request.getRequestDispatcher("./jsp/seller/update_product.jsp");
             rd.forward(request, response);
-
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("./");

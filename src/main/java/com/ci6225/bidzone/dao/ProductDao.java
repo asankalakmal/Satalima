@@ -98,4 +98,35 @@ public class ProductDao {
 		}
 		return productList;
      }
+     
+     public Product getProduct(int productId) throws Exception{
+         String selectStatement = "select * from product where id=?";  
+		Connection con = null;
+		PreparedStatement ps = null;
+		       ResultSet rs = null;
+                       Product product=null;
+		try{
+			con = ConnectionUtil.createConnection();
+			ps = con.prepareStatement(selectStatement);    
+                        ps.setInt(1, productId);
+			rs = ps.executeQuery();
+                        
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+                                String name = rs.getString("name");
+                                String description = rs.getString("description");
+                                int quantity = rs.getInt("quantity");
+                                float unitPrice = rs.getFloat("unit_price");
+                                 product = new Product(id, name, description, quantity, unitPrice, null);
+                                
+			} 
+		}
+		finally{
+			if(rs != null) rs.close();
+			if(ps != null) ps.close();
+			if(con != null) con.close();
+		}
+		return product;
+     }
 }

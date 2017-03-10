@@ -57,5 +57,10 @@ public class ProductBean {
         ProductDao dao = new ProductDao();
         return dao.getProductListBySellerId(sellerId);
     }
+    
+    public Product getProduct(int productId) throws Exception{
+        ProductDao dao = new ProductDao();
+        return dao.getProduct(productId);
+    }
 
 }

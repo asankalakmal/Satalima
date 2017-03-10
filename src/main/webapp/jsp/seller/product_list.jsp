@@ -1,11 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/jsp/common/header.jsp"></jsp:include>
     <div id="wrapper" class="container">
     <jsp:include page="/jsp/common/menu.jsp"></jsp:include>		
-        <section class="header_text sub">
-            <img class="pageBanner" src="${pageContext.request.contextPath}/themes/images/pageBanner.png" alt="New products" >
-        <h4><span>Product List</span></h4>
-    </section>			
+   			
     <section class="main-content">				
         <div class="row">
 <div class="span9">					
@@ -16,7 +14,6 @@
                                     <th>Remove</th>
                                     <th>Product Name</th>
                                     <th>Image</th>
-                                    <th>Name</th>
                                     <th>Description</th>
                                     <th>Unit Price</th>
                                     <th>Quantity</th>
@@ -24,9 +21,9 @@
                             </thead>
                             <tbody>
                                 <c:forEach var="product" items="${productList}" varStatus="index">
-                                <tr class='clickable-row' data-href='${pageContext.request.contextPath}/UpdateProduct?productId=${product.id}'>
+                                <tr class='clickable-row' data-href='${pageContext.request.contextPath}/ViewProductDetail?productId=${product.id}'>
                                     <td>
-                                        <button type="button" class="btn btn-danger btn-lg" id="removeItem_${index.index}" onclick="removeCartItem(${index.index})"><span class="glyphicon glyphicon-remove"></span></button>
+                                        <button type="button" class="btn btn-danger btn-lg" id="removeProduct_${product.id}" onclick="removeCartItem(${product.id})"><span class="glyphicon glyphicon-remove"></span></button>
                                     </td>
                                     <td>${product.name}</td>
                                     <td></td>
@@ -52,6 +49,10 @@
         $('#checkout').click(function (e) {
             document.location.href = "checkout.html";
         })
+        
+        $(".clickable-row").click(function() {
+                window.location = $(this).data("href");
+                }); 
     });
 </script>		
 </body>

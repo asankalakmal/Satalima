@@ -7,7 +7,7 @@
         </section>			
         <section class="main-content">				
             <div class="row">
-                <div class="span11">
+                <div class="span11 middleDiv">
                     <form accept-charset="utf-8" enctype="multipart/form-data" action="${pageContext.request.contextPath}/AddProduct" method="post">
                         <input type="hidden" name="next" value="/">
                         <fieldset>

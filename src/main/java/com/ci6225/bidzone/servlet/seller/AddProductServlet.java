@@ -65,7 +65,7 @@ public class AddProductServlet extends HttpServlet {
         FileItem imageItem = null;
 
         // constructs the folder where uploaded file will be stored
-        String uploadFolder = getServletContext().getRealPath("") + "/productImages";
+        //String uploadFolder = getServletContext().getRealPath("") + "/productImages";
         // Create a factory for disk-based file items
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setSizeThreshold(5000 * 1024);
@@ -126,7 +126,7 @@ public class AddProductServlet extends HttpServlet {
 
         try {
             User user = (User) request.getSession().getAttribute("user");
-            productBean.addProduct(name, description, user.getUserId(), Integer.parseInt(quantity), Float.parseFloat(unitPrice), imageItem, uploadFolder);
+            productBean.addProduct(name, description, user.getUserId(), Integer.parseInt(quantity), Float.parseFloat(unitPrice), imageItem);
             messageList.add("Product Added Successfully.");
             request.setAttribute("successMessage", messageList);
             RequestDispatcher rd = request.getRequestDispatcher("./ViewProductList");

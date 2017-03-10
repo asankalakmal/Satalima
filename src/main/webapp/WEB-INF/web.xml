@@ -40,7 +40,4 @@
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/addProduct</url-pattern>
     </servlet-mapping>
-    
-    
-    
 </web-app>

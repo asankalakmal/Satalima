@@ -24,10 +24,10 @@ public class ProductBean {
 
     private final String imagePath = Properties.getProperty("ACTUAL_IMAGE_PATH");
     
-    public void addProduct(String name, String description, int userId, int quantity, float unitPrice, FileItem image, String uploadPath) throws Exception {
+    public void addProduct(String name, String description, int userId, int quantity, float unitPrice, FileItem image) throws Exception {
         ProductDao productDao = new ProductDao();
-        String productName = uploadProductImage(image, imagePath+"/"+Integer.toString(userId));
-        Product product = new Product(name, description, quantity, unitPrice, productName);
+        String imageName = uploadProductImage(image, imagePath+"/"+Integer.toString(userId));
+        Product product = new Product(name, description, quantity, unitPrice, imageName);
         Seller seller = new Seller(userId);
         product.setSeller(seller);
         productDao.addProduct(product, userId);

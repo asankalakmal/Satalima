@@ -41,25 +41,27 @@
                                     <c:if test="${index.index % 8 == 0}">
 
                                         <div class="item <c:if test='${index.index == 0}'>active</c:if>">
-                                            <ul class="thumbnails">
-                                                </c:if>
-                                                <li class="span3">
-                                                    <div class="product-box">
-                                                        <span class="sale_tag"></span>
-                                                        <p><a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}">
-                                                                <c:if test="${product.image == null}">
-                                                                <img width="100" height="100" src="${pageContext.request.contextPath}/themes/images/no_image.png" alt="" />
-                                                                </c:if>
-                                                                <c:if test="${product.image != null}">
-                                                                <img width="100" height="100" src="${product.image}" alt="" />
-                                                                </c:if>
-                                                            </a></p>
-                                                        <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="title">${product.name}</a><br/>
-                                                        <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="category">${product.seller.sellerName}</a>
-                                                        <p class="price"><fmt:formatNumber value="${product.unitPrice}" type="currency"/></p>
-                                                    </div>
-                                                </li>
-                                                <c:if test="${index.index % 8 == 7}">
+                                                <ul class="thumbnails">
+                                            </c:if>
+                                            <li class="span3">
+                                                <div class="product-box">
+                                                    <span class="sale_tag"></span>
+                                                    <p><a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}">
+                                                            <c:choose>
+                                                                <c:when test="${not empty product.image}">
+                                                                    <img width="100" height="100" src="${pageContext.request.contextPath}/Images/${product.seller.userId}/${product.image}" />
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <img width="100" height="100" src="${pageContext.request.contextPath}/themes/images/no_image.png" />
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </a></p>
+                                                    <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="title">${product.name}</a><br/>
+                                                    <a href="${pageContext.request.contextPath}/ViewProduct?productIndex=${index.index}" class="category">${product.seller.sellerName}</a>
+                                                    <p class="price"><fmt:formatNumber value="${product.unitPrice}" type="currency"/></p>
+                                                </div>
+                                            </li>
+                                            <c:if test="${index.index % 8 == 7}">
                                             </ul>
                                         </div>
 

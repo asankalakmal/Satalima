@@ -4,16 +4,24 @@
     <div id="wrapper" class="container">
     <jsp:include page="/jsp/common/menu.jsp"></jsp:include>
         <section class="header_text sub">
-            <img class="pageBanner" src="${pageContext.request.contextPath}/themes/images/pageBanner.png" alt="New products" >
         <h4><span>Product Detail</span></h4>
     </section>
     <section class="main-content">				
         <div class="row">						
             <div class="span9">
                 <div class="row">
-                    <div class="span4">
-                        <a href="${pageContext.request.contextPath}/themes/images/ladies/1.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 1"><img alt="" src="themes/images/ladies/1.jpg"></a>												
-                        <ul class="thumbnails small">								
+                    <div class="span4 product-detail-box">
+                        <c:choose>
+                            <c:when test="${not empty detailProduct.image}">
+                                <a href="${pageContext.request.contextPath}/Images/${detailProduct.seller.userId}/${detailProduct.image}" class="thumbnail" data-fancybox-group="group1" title="Description 1">
+                                <img alt="" src="${pageContext.request.contextPath}/Images/${detailProduct.seller.userId}/${detailProduct.image}" class="product-detail-image"></a> 
+                            </c:when>
+                            <c:otherwise>
+                                <a href="${pageContext.request.contextPath}/themes/images/no_image.png" class="thumbnail" data-fancybox-group="group1" title="Description 1">
+                                <img alt="" src="${pageContext.request.contextPath}/themes/images/no_image.png" class="product-detail-image"></a>            
+                            </c:otherwise>
+                        </c:choose>
+                        <!--<ul class="thumbnails small">								
                             <li class="span1">
                                 <a href="${pageContext.request.contextPath}/themes/images/ladies/2.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="themes/images/ladies/2.jpg" alt=""></a>
                             </li>								
@@ -26,7 +34,7 @@
                             <li class="span1">
                                 <a href="${pageContext.request.contextPath}/themes/images/ladies/5.jpg" class="thumbnail" data-fancybox-group="group1" title="Description 5"><img src="themes/images/ladies/5.jpg" alt=""></a>
                             </li>
-                        </ul>
+                        </ul>-->
                     </div>
                     <div class="span5">
                         <address>
@@ -34,10 +42,10 @@
                             <strong>Product Name:</strong> <span>${detailProduct.name}</span><br>
                             <strong>Availability:</strong> 
                             <c:if test="${detailProduct.quantity == 0}">
-                           <span class="red_font">Out Of Stock</span><br>
+                                <span class="red_font">Out Of Stock</span><br>
                             </c:if>
                             <c:if test="${detailProduct.quantity != 0}">
-                           <span>${detailProduct.quantity} units available</span><br>
+                                <span>${detailProduct.quantity} units available</span><br>
                             </c:if>
                         </address>									
                         <h4><strong>Price: <fmt:formatNumber value="${detailProduct.unitPrice}" type="currency"/></strong></h4>
@@ -61,33 +69,14 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="home">${detailProduct.description}</div>
                             <div class="tab-pane" id="profile">
-              ${detailProduct.seller.sellerDescription}
+                                ${detailProduct.seller.sellerDescription}
                             </div>
                         </div>							
                     </div>						
-                    
+
                 </div>
             </div>
-            <div class="span3 col">
-                <div class="block">	
-                    <ul class="nav nav-list">
-                        <li class="nav-header">SUB CATEGORIES</li>
-                        <li><a href="products.html">Nullam semper elementum</a></li>
-                        <li class="active"><a href="products.html">Phasellus ultricies</a></li>
-                        <li><a href="products.html">Donec laoreet dui</a></li>
-                        <li><a href="products.html">Nullam semper elementum</a></li>
-                        <li><a href="products.html">Phasellus ultricies</a></li>
-                        <li><a href="products.html">Donec laoreet dui</a></li>
-                    </ul>
-                    <br/>
-                    <ul class="nav nav-list below">
-                        <li class="nav-header">MANUFACTURES</li>
-                        <li><a href="products.html">Adidas</a></li>
-                        <li><a href="products.html">Nike</a></li>
-                        <li><a href="products.html">Dunlop</a></li>
-                        <li><a href="products.html">Yamaha</a></li>
-                    </ul>
-                </div>
+            <div class="span3 col">          
                 <div class="block">
                     <h4 class="title">
                         <span class="pull-left"><span class="text">Randomize</span></span>
@@ -152,8 +141,8 @@
         </div>
     </section>			
     <jsp:include page="/jsp/common/footer.jsp"></jsp:include>
-</div>
-<script src="${pageContext.request.contextPath}/themes/js/common.js"></script>
+    </div>
+    <script src="${pageContext.request.contextPath}/themes/js/common.js"></script>
 <script>
     $(function () {
         $('#myTab a:first').tab('show');

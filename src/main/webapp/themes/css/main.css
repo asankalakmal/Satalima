@@ -829,3 +829,19 @@ section.header_text.sub_title{
 .radiobtn label{
     line-height: 28px;
 }
+
+img.product-list-img {
+    width: 75px
+}
+
+img.product-detail-image {
+    height: 350px;
+}
+
+.product-detail-box {
+    margin-bottom: 20px;
+}
+
+.clickable-row {
+    cursor: pointer;
+}

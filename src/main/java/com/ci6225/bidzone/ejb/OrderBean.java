@@ -27,4 +27,10 @@ public class OrderBean {
         List<ShoppingCart> orderList = dao.getOrderList(userId);
         return orderList;
     }
+    
+    public List<ShoppingCart> getOrderListForSeller(int userId) throws Exception{
+        OrderDao dao = new OrderDao();
+        List<ShoppingCart> orderList = dao.getOrderList(userId, true);
+        return orderList;
+    }
 }

@@ -57,7 +57,7 @@ public class UpdateProductServlet extends HttpServlet {
             User user = (User) request.getSession().getAttribute("user");
             productBean.updateProduct(id, name, description, quantity, unitPrice, user.getUserId(), null, null);
             request.setAttribute("successMessage", "Product Updated Successfully.");
-            RequestDispatcher rd = request.getRequestDispatcher("./seller/prodcut_list.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("./ViewProductList");
             rd.forward(request, response);
 
         } catch (Exception e) {

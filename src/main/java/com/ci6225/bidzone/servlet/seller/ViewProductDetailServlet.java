@@ -29,7 +29,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author Ureka
  */
-@WebServlet("/ViewProductList")
+@WebServlet("/ViewProductDetail")
 public class ViewProductDetailServlet extends HttpServlet {
 
     @EJB
@@ -57,10 +57,10 @@ public class ViewProductDetailServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       try {
-            User user = (User) request.getSession().getAttribute("user");
-            List<Product> productList = productBean.getProductList(user.getUserId());
-            request.setAttribute("productList", productList);
-            RequestDispatcher rd = request.getRequestDispatcher("./jsp/seller/product_list.jsp");
+          int productId = Integer.parseInt(request.getParameter("productId"));
+            Product product = productBean.getProduct(productId);
+            request.setAttribute("product", product);
+            RequestDispatcher rd = request.getRequestDispatcher("./jsp/seller/update_product.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();

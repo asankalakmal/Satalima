@@ -100,7 +100,7 @@ public class ProductDao {
      }
      
      public Product getProduct(int productId) throws Exception{
-         String selectStatement = "select * from product where id=";  
+         String selectStatement = "select * from product where id=?";  
 		Connection con = null;
 		PreparedStatement ps = null;
 		       ResultSet rs = null;

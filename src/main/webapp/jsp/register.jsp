@@ -1,9 +1,9 @@
 <jsp:include page="/jsp/common/header.jsp"></jsp:include>
     <div id="wrapper" class="container">
-    <jsp:include page="/jsp/common/menu.jsp"></jsp:include>		
-        <section class="header_text sub">
-            <img class="pageBanner" src="themes/images/pageBanner.png" alt="New products" >
-            <h4><span>Login or Regsiter</span></h4>
+    <jsp:include page="/jsp/common/menu.jsp"></jsp:include>
+    <jsp:include page="/jsp/common/messages.jsp"></jsp:include>
+        <section class="header_text sub_title">
+            <h2><span>Login / Regsiter</span></h2>
         </section>			
         <section class="main-content">				
             <div class="row">
@@ -16,7 +16,7 @@
                             <div class="control-group">
                                 <label class="control-label">Username</label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Enter your username" name="username" id="userCode" class="input-xlarge">
+                                    <input type="text" placeholder="Enter your username" name="username" id="userCode" class="input-xlarge" value="${username}">
                                 </div>
                             </div>
                             <div class="control-group">
@@ -40,49 +40,49 @@
                             <div class="control-group">
 
                                 <div class="controls">
-                                    <input type="radio" name="userType" class="input-xlarge" value="2">
+                                    <input type="radio" name="userType" class="input-xlarge" value="2" ${userType=='2'?'checked':''}>
                                 </div>
                                 <label class="control-label">I am a Seller</label>
 
                                 <div class="controls">
-                                    <input type="radio" name="userType" class="input-xlarge" value="1">
+                                    <input type="radio" name="userType" class="input-xlarge" value="1" ${userType=='1'?'checked':''}>
                                 </div>
                                 <label class="control-label">I am a Buyer</label>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Username</label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Enter your username" name="userCode" class="input-xlarge">
+                                    <input type="text" placeholder="Enter your username" name="userCode" class="input-xlarge" value="${userCode}">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">First Name:</label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Enter your First name" name="firstName" class="input-xlarge">
+                                    <input type="text" placeholder="Enter your First name" name="firstName" class="input-xlarge" value="${firstName}">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Last Name:</label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Enter your last name" name="lastName" class="input-xlarge">
+                                    <input type="text" placeholder="Enter your last name" name="lastName" class="input-xlarge" value="${lastName}">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Email address:</label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Enter your email" name="email" class="input-xlarge">
+                                    <input type="text" placeholder="Enter your email" name="email" class="input-xlarge" value="${email}">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Phone:</label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Enter your phone" name="phone" class="input-xlarge">
+                                    <input type="text" placeholder="Enter your phone" name="phone" class="input-xlarge" value="${phone}">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Country</label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Enter your country" name="country" class="input-xlarge">
+                                    <input type="text" placeholder="Enter your country" name="country" class="input-xlarge" value="${country}">
                                 </div>
                             </div>
                             <div class="control-group">

@@ -49,7 +49,7 @@ public class FormValidation {
     }
     
     public boolean validateSignup(String userType, String userCode, String firstName, String lastName, 
-            String email, String phone, String country, String password, String confirmPassword) {
+            String email, String phone, String country, String password, String confirmPassword, String shopName, String description) {
 
         boolean isValid = true;
         
@@ -65,6 +65,11 @@ public class FormValidation {
         //isValid = setInputErrorMessage(phone, "Phone", 10, 3);
         //isValid = setInputErrorMessage(country, "country", 20, 3);
         isValid = setInputErrorMessage(password, "Password", 20, 5);
+        
+        if(isValidInt(userType) && Integer.parseInt(userType) == 2){
+            isValid = setInputErrorMessage(shopName, "Shop Name", 45, 3);
+            isValid = setInputErrorMessage(description, "Description", 500, 3);
+        }
         
         if(confirmPassword.trim().length() == 0) {
             errorMessages.add("Please provide Confirm Password");

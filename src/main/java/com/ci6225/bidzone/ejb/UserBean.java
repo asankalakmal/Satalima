@@ -13,11 +13,11 @@ public User userExist(String username) throws Exception{
 		return user;
 	}	
 
-	public void addUser(String userCode, String firstName, String lastName, String email, String phone, String country, int userType, String password) throws Exception{
+	public void addUser(String userCode, String firstName, String lastName, String email, String phone, String country, int userType, String password, String shopName, String description) throws Exception{
 		UserDao userDao = new UserDao();
                 byte[] salt = PasswordUtil.getSalt();
                 String passwordEnc = PasswordUtil.getSecurePassword(password, salt);
-		userDao.addUser(userCode, firstName, lastName, email, phone, country, userType, passwordEnc, salt);
+		userDao.addUser(userCode, firstName, lastName, email, phone, country, userType, passwordEnc, salt, shopName, description);
 	}
         
         public User login(String username, String password) throws Exception{

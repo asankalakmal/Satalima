@@ -30,7 +30,7 @@ public class OrderBean {
     
     public List<ShoppingCart> getOrderListForSeller(int userId) throws Exception{
         OrderDao dao = new OrderDao();
-        List<ShoppingCart> orderList = dao.getOrderList(userId, true);
+        List<ShoppingCart> orderList = dao.getOrderList(userId);
         return orderList;
     }
 }

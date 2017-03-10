@@ -1,7 +1,7 @@
 <section class="navbar main-menu">
     <div class="navbar-inner main-menu">				
         <a href="${pageContext.request.contextPath}/" class="logo pull-left"><img src="${pageContext.request.contextPath}/themes/images/logo.png" class="site_logo" alt=""></a>
-        <nav id="menu" class="pull-right">
+        <!--<nav id="menu" class="pull-right">
             <ul>
                 <li><a href="./product_list.jsp">Products</a>					
                     <ul>
@@ -20,6 +20,6 @@
                 <li><a href="./products.jsp">Best Seller</a></li>
                 <li><a href="./products.jsp">Top Seller</a></li>
             </ul>
-        </nav>
+        </nav>-->
     </div>
 </section>

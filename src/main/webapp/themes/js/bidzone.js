@@ -19,7 +19,7 @@ function removeCartItemSuccess(data){
 }
 
 function removeCartItemFailed(){
-    window.location = '/BidZone/';
+    window.location = '/MarketZone/';
 }
 
 function updateCart(){
@@ -40,5 +40,5 @@ function updateCartSuccess(data){
 }
 
 function updateCartFailed(){
-    window.location = '/BidZone/';
+    window.location = '/MarketZone/';
 }

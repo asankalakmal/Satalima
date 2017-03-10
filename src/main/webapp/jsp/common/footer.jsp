@@ -32,5 +32,5 @@
     </div>	
 </section>
 <section id="copyright">
-    <span>© Copyright 2017 BidZone. All Rights Reserved. </span>
+    <span>© Copyright 2017 MarketZone. All Rights Reserved. </span>
 </section>

@@ -32,4 +32,15 @@
         <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>addProduct</servlet-name>
+        <jsp-file>jsp/seller/add_product.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addProduct</servlet-name>
+        <url-pattern>/addProduct</url-pattern>
+    </servlet-mapping>
+    
+    
+    
 </web-app>

@@ -10,6 +10,7 @@ import com.ci6225.bidzone.pojo.User;
 import com.ci6225.bidzone.validation.FormValidation;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
@@ -103,29 +104,36 @@ public class AddProductServlet extends HttpServlet {
         } catch (FileUploadException ex) {
             System.out.println(ex);
             ex.printStackTrace();
+            response.sendRedirect("./addProduct");
         } catch (Exception ex) {
             System.out.println(ex);
             ex.printStackTrace();
+            response.sendRedirect("./addProduct");
         }
         
         FormValidation validation = new FormValidation();
+        List<String> messageList =  new ArrayList<String>();
         if(!validation.validateAddProduct(name, description, quantity, unitPrice, imageItem)) {
-            request.setAttribute("errorMessage", "Product Adding Error.");
-            request.setAttribute("errorList", validation.getErrorMessages());
-            RequestDispatcher rd = request.getRequestDispatcher("./");
+            messageList.addAll(validation.getErrorMessages());
+            request.setAttribute("errorMessage", messageList);
+            request.setAttribute("name", name);
+            request.setAttribute("description", description);
+            request.setAttribute("quantity", quantity);
+            request.setAttribute("unitPrice", unitPrice);
+            RequestDispatcher rd = request.getRequestDispatcher("./addProduct");
             rd.forward(request, response);
         }
 
         try {
             User user = (User) request.getSession().getAttribute("user");
             productBean.addProduct(name, description, user.getUserId(), Integer.parseInt(quantity), Float.parseFloat(unitPrice), imageItem, uploadFolder);
-            request.setAttribute("successMessage", "Product Added Successfully.");
-            RequestDispatcher rd = request.getRequestDispatcher("./");
+            messageList.add("Product Added Successfully.");
+            request.setAttribute("successMessage", messageList);
+            RequestDispatcher rd = request.getRequestDispatcher("./ViewProductList");
             rd.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("./");
+            response.sendRedirect("./addProduct");
         }
-
     }
 }

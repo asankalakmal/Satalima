@@ -5,7 +5,6 @@
  */
 package com.ci6225.bidzone.servlet.cart;
 
-import com.ci6225.bidzone.servlet.seller.*;
 import com.ci6225.bidzone.ejb.ProductBean;
 import com.ci6225.bidzone.ejb.ShoppingCartBeanLocal;
 import com.ci6225.bidzone.pojo.User;

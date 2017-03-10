@@ -54,12 +54,12 @@ public class FormValidation {
         return isValid;
     }
     
-    public boolean validateSignup(int userType, String userCode, String firstName, String lastName, 
+    public boolean validateSignup(String userType, String userCode, String firstName, String lastName, 
             String email, String phone, String country, String password, String confirmPassword) {
 
         boolean isValid = true;
         
-        if (!(userType==1 || userType==2)) {
+        if (!isValidInt(userType) || !(Integer.parseInt(userType)==1 || Integer.parseInt(userType)==2)) {
             errorMessages.add("Please select User type");
             isValid = false;
         }
@@ -74,11 +74,26 @@ public class FormValidation {
         
         if(confirmPassword.trim().length() == 0) {
             errorMessages.add("Please provide Confirm Password");
+            isValid = false;
         } else if (!password.trim().equals(confirmPassword.trim())) {
             errorMessages.add("Password does not match with Confirm Password");
             isValid = false;
         } 
 
+        return isValid;
+    }
+    
+    public boolean validateLogin(String userName, String password) {
+
+        boolean isValid = true;
+        if (userName.trim().length() == 0) {
+            errorMessages.add("Please provide your username");
+            isValid = false;
+        } 
+        if (password.trim().length() == 0) {
+            errorMessages.add("Please provide your password");
+            isValid = false;
+        }
         return isValid;
     }
 

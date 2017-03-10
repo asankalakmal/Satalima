@@ -4,6 +4,8 @@ import com.ci6225.bidzone.ejb.UserBean;
 import com.ci6225.bidzone.pojo.User;
 import com.ci6225.bidzone.validation.FormValidation;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 
 import javax.servlet.RequestDispatcher;
@@ -51,28 +53,34 @@ public class SignupServlet extends HttpServlet {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String country = request.getParameter("country");
-        int userType = Integer.parseInt(request.getParameter("userType"));
+        String userType = request.getParameter("userType");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
 
         FormValidation validation = new FormValidation();
         boolean isValid = validation.validateSignup(userType, userCode, firstName, lastName,
                 email, phone, country, password, confirmPassword);
+        List<String> messageList =  new ArrayList<String>();
         try {
             if (isValid) {
                 User user = userBean.userExist(userCode);
                 if (user == null) {
-                    userBean.addUser(userCode, firstName, lastName, email, phone, country, userType, password);
-                    request.setAttribute("successMessage", "Signup Successful.");
+                    messageList.add("Signup Successful.");
+                    userBean.addUser(userCode, firstName, lastName, email, phone, country, Integer.parseInt(userType), password);
+                    request.setAttribute("successMessage", messageList);
                     RequestDispatcher rd = request.getRequestDispatcher("./jsp/register.jsp");
                     rd.forward(request, response);
                 } else {
-                    request.setAttribute("errorMessage", "User name already exist.");
+                    messageList.add("User name already exist.");
+                    request.setAttribute("errorMessage", messageList);
+                    setInputParam(request, userCode, firstName, lastName, email, phone, country, userType);
                     RequestDispatcher rd = request.getRequestDispatcher("./jsp/register.jsp");
                     rd.forward(request, response);
                 }
             } else {
-                request.setAttribute("errorMessage", validation.getErrorMessages());
+                messageList.addAll(validation.getErrorMessages());
+                request.setAttribute("errorMessage", messageList);
+                setInputParam(request, userCode, firstName, lastName, email, phone, country, userType);
                 RequestDispatcher rd = request.getRequestDispatcher("./jsp/register.jsp");
                 rd.forward(request, response);
             }
@@ -82,6 +90,16 @@ public class SignupServlet extends HttpServlet {
             response.sendRedirect("./");
         }
 
+    }
+    
+    private void setInputParam(HttpServletRequest request, String userCode, String firstName, String lastName, String email, String phone, String country, String userType) {
+        request.setAttribute("userCode", userCode);
+        request.setAttribute("firstName", firstName);
+        request.setAttribute("lastName", lastName);
+        request.setAttribute("email", email);
+        request.setAttribute("phone", phone);
+        request.setAttribute("country", country);
+        request.setAttribute("userType", userType);
     }
 
 }

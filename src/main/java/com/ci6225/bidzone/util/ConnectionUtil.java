@@ -18,7 +18,7 @@ public class ConnectionUtil {
 		try {
                     Context ctx = new InitialContext();
                     DataSource  ds = (DataSource)ctx.lookup(connectionPool);
-                    con = ds.getConnection(username, password);
+                    con = ds.getConnection();
 		} catch (Exception ex) {
 			System.out.println("Exception in ConnectionUtil.createConnection(): " + ex);
 			throw new Exception("Couldn't open connection to database: " +

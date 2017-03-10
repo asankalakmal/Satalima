@@ -85,6 +85,18 @@
                                     <input type="text" placeholder="Enter your country" name="country" class="input-xlarge" value="${country}">
                                 </div>
                             </div>
+                            <div class="control-group seller-field hide">
+                                <label class="control-label">Shop Name:</label>
+                                <div class="controls">
+                                    <input type="text" placeholder="Enter your Shop Name" name="shopName" class="input-xlarge" value="${shopName}">
+                                </div>
+                            </div>
+                            <div class="control-group seller-field hide">
+                                <label class="control-label">Description:</label>
+                                <div class="controls">
+                                    <textArea type="text" placeholder="Enter your Description" name="description" class="input-xlarge" value="${description}"></textarea>
+                                </div>
+                            </div>
                             <div class="control-group">
                                 <label class="control-label">Password:</label>
                                 <div class="controls">
@@ -112,6 +124,14 @@
         $('#checkout').click(function (e) {
             document.location.href = "checkout.html";
         })
+        
+        $('input[type=radio][name=userType]').change(function() {
+            if (this.value == 1) {
+                $('.seller-field').hide();
+            } else if (this.value == 2) {
+                $('.seller-field').show();
+            }
+        });
     });
 </script>		
 </body>

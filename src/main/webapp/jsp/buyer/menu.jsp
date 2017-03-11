@@ -1,8 +1,7 @@
 <section class="navbar main-menu">
     <div class="navbar-inner main-menu">				
-        <a href="./" class="logo pull-left"><img src="${pageContext.request.contextPath}/themes/images/logo.png" class="site_logo" alt=""></a>
         <nav id="menu" class="pull-right">
-            <ul>
+            <!--<ul>
                 <li><a href="./products.jsp">Woman</a>					
                     <ul>
                         <li><a href="./products.jsp">Lacinia nibh</a></li>									
@@ -21,7 +20,7 @@
                 <li><a href="./products.jsp">Hangbag</a></li>
                 <li><a href="./products.jsp">Best Seller</a></li>
                 <li><a href="./products.jsp">Top Seller</a></li>
-            </ul>
+            </ul>-->
         </nav>
     </div>
 </section>

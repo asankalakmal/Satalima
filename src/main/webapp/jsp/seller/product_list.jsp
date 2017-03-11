@@ -10,7 +10,6 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Remove</th>
                                 <th>Product Name</th>
                                 <th>Image</th>
                                 <th>Description</th>
@@ -21,9 +20,6 @@
                         <tbody>
                         <c:forEach var="product" items="${productList}" varStatus="index">
                             <tr class='clickable-row' data-href='${pageContext.request.contextPath}/ViewProductDetail?productId=${product.id}'>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-lg" id="removeProduct_${product.id}" onclick="removeCartItem(${product.id})"><span class="glyphicon glyphicon-remove"></span></button>
-                                </td>
                                 <td>${product.name}</td>
                                 <td>
                                     <c:choose>
@@ -56,7 +52,7 @@
     $(document).ready(function () {
         $('#checkout').click(function (e) {
             document.location.href = "checkout.html";
-        })
+        });
 
         $(".clickable-row").click(function () {
             window.location = $(this).data("href");

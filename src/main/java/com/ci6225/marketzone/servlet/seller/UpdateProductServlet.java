@@ -7,7 +7,10 @@ package com.ci6225.marketzone.servlet.seller;
 
 import com.ci6225.marketzone.ejb.ProductBean;
 import com.ci6225.marketzone.pojo.User;
+import com.ci6225.marketzone.validation.FormValidation;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -51,14 +54,22 @@ public class UpdateProductServlet extends HttpServlet {
         try {
             String name = request.getParameter("name");
             String description = request.getParameter("description");
-            float unitPrice = Float.parseFloat(request.getParameter("unitPrice"));
-            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            String unitPrice = request.getParameter("unitPrice");
+            String quantity = request.getParameter("quantity");
             int id = Integer.parseInt(request.getParameter("id"));
             User user = (User) request.getSession().getAttribute("user");
-            productBean.updateProduct(id, name, description, quantity, unitPrice, user.getUserId(), null, null);
-            request.setAttribute("successMessage", "Product Updated Successfully.");
-            RequestDispatcher rd = request.getRequestDispatcher("./ViewProductList");
-            rd.forward(request, response);
+            
+            FormValidation validation = new FormValidation();
+            List<String> messageList =  new ArrayList<String>();
+            if(!validation.validateupdateProduct(name, description, quantity, unitPrice)) {
+                productBean.updateProduct(id, name, description, Integer.parseInt(quantity), Float.parseFloat(unitPrice), user.getUserId(), null, null);
+                messageList.add("Product Updated Successfully.");
+                request.setAttribute("successMessage", messageList);
+                RequestDispatcher rd = request.getRequestDispatcher("./ViewProductList");
+                rd.forward(request, response);
+            } else {
+                
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

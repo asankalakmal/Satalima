@@ -11,9 +11,11 @@
                     <!--<form method="POST" class="search_form">
                         <input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
                     </form>-->
+                    <a href="./" class="logo pull-left"><img src="${pageContext.request.contextPath}/themes/images/logo.png" class="site_logo" alt=""></a>
                 </div>
                 <div class="span8">
                     <div class="account pull-right">
+                        
                         <ul class="user-menu">	
                             <c:if test="${sessionScope.user != null}"><li>Welcome ${sessionScope.user.firstName} ${sessionScope.user.lastName} </li>
                                 <li><a href="#">My Account</a></li>

@@ -1,9 +1,9 @@
 <jsp:include page="/jsp/common/header.jsp"></jsp:include>
     <div id="wrapper" class="container">
-    <jsp:include page="/jsp/common/menu.jsp"></jsp:include>		
+    <jsp:include page="/jsp/common/menu.jsp"></jsp:include>
+    <jsp:include page="/jsp/common/messages.jsp"></jsp:include>
         <section class="header_text sub">
-            <img class="pageBanner" src="themes/images/pageBanner.png" alt="New products" >
-            <h4><span>Update Product</span></h4>
+            <h2><span>Update Product</span></h2>
         </section>			
         <section class="main-content">				
             <div class="row">

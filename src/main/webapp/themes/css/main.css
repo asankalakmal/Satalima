@@ -271,7 +271,7 @@ section.navbar{
 	margin-bottom:0;
 }
 .navbar-inner.main-menu {	
-	height: 40px;
+	height: 0px;
 	padding-left:10px;	
 	padding-right:0;	
 	border-right: 0;
@@ -797,7 +797,7 @@ section.our_client .row{
 }
 
 .logo img {
-    width: 115px;
+    width: 200px;
 }
 
 .control-group {
@@ -844,4 +844,12 @@ img.product-detail-image {
 
 .clickable-row {
     cursor: pointer;
+}
+
+.product-cart-img {
+    height: 250px;
+}
+
+.navbar-inner {
+    min-height: 0px!important;
 }

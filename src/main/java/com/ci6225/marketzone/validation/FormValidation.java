@@ -48,6 +48,34 @@ public class FormValidation {
         return isValid;
     }
     
+    public boolean validateupdateProduct(String name, String description, String quantity, String unitPrice) {
+
+        boolean isValid = true;
+        
+        isValid = setInputErrorMessage(name, "Product Name", 30, 3);
+        isValid = setInputErrorMessage(description, "Description", 400, 3);
+
+        if (quantity.trim().length() == 0) {
+            errorMessages.add("Please provide your quantity");
+            isValid = false;
+        } else if (!isValidInt(quantity)) {
+            errorMessages.add("Please provide valid quantity");
+            isValid = false;
+        }
+        
+        if (unitPrice.trim().length() == 0) {
+            errorMessages.add("Please provide your quantity");
+            isValid = false;
+        } else if (!isValidDouble(unitPrice)) {
+            errorMessages.add("Please provide valid price");
+            isValid = false;
+        }
+
+        return isValid;
+    }
+    
+    
+    
     public boolean validateSignup(String userType, String userCode, String firstName, String lastName, 
             String email, String phone, String country, String password, String confirmPassword, String shopName, String description) {
 

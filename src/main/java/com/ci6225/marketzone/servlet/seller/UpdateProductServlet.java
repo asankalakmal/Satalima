@@ -70,13 +70,12 @@ public class UpdateProductServlet extends HttpServlet {
             } else {
                 messageList.addAll(validation.getErrorMessages());
                 request.setAttribute("errorMessage", messageList);
-                
                 request.setAttribute("name", name);
                 request.setAttribute("description", description);
                 request.setAttribute("unitPrice", unitPrice);
                 request.setAttribute("quantity", quantity);
                 request.setAttribute("id", id);
-                RequestDispatcher rd = request.getRequestDispatcher("./UpdateProduct");
+                RequestDispatcher rd = request.getRequestDispatcher("./ViewProductDetail?productId="+id);
                 rd.forward(request, response);
             }
 

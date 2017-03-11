@@ -30,7 +30,7 @@ public class Config implements ServletContextListener {
             System.out.println("STATING THE WEB: Image Linked Successfully");
         } catch(IOException ex) {
             System.out.println("STATING THE WEB: ERROR Image Linked UNSuccessfull");
-            System.out.println(ex);
+            //System.out.println(ex);
         }
     }
     public void contextDestroyed(ServletContextEvent event) {

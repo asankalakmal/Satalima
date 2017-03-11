@@ -13,26 +13,26 @@
                         <fieldset>
 
                             <div class="control-group">
-                                <label class="control-label">Name</label>
+                                <label class="control-label"><span class="required">*</span> Name</label>
                                 <div class="controls">
                                     <input type="text" placeholder="Product Name" name="name" id="name" class="input-xlarge" value="${name}">
                                 </div>
                             </div>
                             
                             <div class="control-group">
-                                <label class="control-label">Unit Price</label>
+                                <label class="control-label"><span class="required">*</span> Unit Price</label>
                                 <div class="controls">
                                     <input type="text" placeholder="Unit Price" id="unitPrice" name="unitPrice" class="input-xlarge" value="${unitPrice}">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Quantity</label>
+                                <label class="control-label"><span class="required">*</span> Quantity</label>
                                 <div class="controls">
                                     <input type="text" placeholder="Quantity" id="quantity" name="quantity" class="input-xlarge" value="${quantity}">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Description</label>
+                                <label class="control-label"><span class="required">*</span> Description</label>
                                 <div class="controls">
                                     <textarea placeholder="Product Description" id="description" name="description" class="input-xlarge">${description}</textarea>
                                 </div>

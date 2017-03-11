@@ -26,9 +26,11 @@ import javax.servlet.http.HttpServletResponse;
  * @author Ureka
  */
 @WebServlet("/ViewOrder")
-public class ViewOrderServlet extends HttpServlet{
+public class ViewOrderServlet extends HttpServlet {
+
     @EJB
     OrderBean orderBean;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,30 +39,30 @@ public class ViewOrderServlet extends HttpServlet{
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		          doPost(request, response);
-	}
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int orderId = Integer.parseInt(request.getParameter("orderId"));
+            ShoppingCart order = orderBean.loadOrder(orderId);
+            request.setAttribute("order", order);
+            RequestDispatcher rd = request.getRequestDispatcher("./jsp/buyer/order_detail.jsp");
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-                    int orderId = Integer.parseInt(request.getParameter("orderId"));
-                    ShoppingCart order = orderBean.loadOrder(orderId);
-                    request.setAttribute("order", order);
-                    RequestDispatcher rd = request.getRequestDispatcher("./jsp/buyer/order_detail.jsp");
-                    
-                rd.forward(request, response);
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			response.sendRedirect("./");
-		}
+            rd.forward(request, response);
 
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("./");
+        }
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+    }
 }

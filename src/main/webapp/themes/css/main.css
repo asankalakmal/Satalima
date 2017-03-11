@@ -853,3 +853,9 @@ img.product-detail-image {
 .navbar-inner {
     min-height: 0px!important;
 }
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}

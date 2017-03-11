@@ -48,61 +48,61 @@
                                 <label class="control-label">I am a Buyer</label>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Username</label>
+                                <label class="control-label"><span class="required">*</span> Username</label>
                                 <div class="controls">
                                     <input type="text" placeholder="Enter your username" name="userCode" class="input-xlarge" value="${userCode}">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">First Name:</label>
+                                <label class="control-label"><span class="required">*</span> First Name:</label>
                                 <div class="controls">
                                     <input type="text" placeholder="Enter your First name" name="firstName" class="input-xlarge" value="${firstName}">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Last Name:</label>
+                                <label class="control-label"><span class="required">*</span> Last Name:</label>
                                 <div class="controls">
                                     <input type="text" placeholder="Enter your last name" name="lastName" class="input-xlarge" value="${lastName}">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Email address:</label>
+                                <label class="control-label"> <span class="required">*</span> Email address:</label>
                                 <div class="controls">
                                     <input type="text" placeholder="Enter your email" name="email" class="input-xlarge" value="${email}">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Phone:</label>
+                                <label class="control-label"><span class="required">*</span> Phone:</label>
                                 <div class="controls">
                                     <input type="text" placeholder="Enter your phone" name="phone" class="input-xlarge" value="${phone}">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Country</label>
+                                <label class="control-label"><span class="required">*</span> Country</label>
                                 <div class="controls">
                                     <input type="text" placeholder="Enter your country" name="country" class="input-xlarge" value="${country}">
                                 </div>
                             </div>
-                            <div class="control-group seller-field hide">
-                                <label class="control-label">Shop Name:</label>
+                            <div class="control-group seller-field ${userType=='1' ? 'hide' : ''}">
+                                <label class="control-label"><span class="required">*</span> Shop Name:</label>
                                 <div class="controls">
                                     <input type="text" placeholder="Enter your Shop Name" name="shopName" class="input-xlarge" value="${shopName}">
                                 </div>
                             </div>
-                            <div class="control-group seller-field hide">
-                                <label class="control-label">Description:</label>
+                            <div class="control-group seller-field ${userType=='1' ? 'hide' : ''}">
+                                <label class="control-label"><span class="required">*</span> Description:</label>
                                 <div class="controls">
                                     <textArea type="text" placeholder="Enter your Description" name="description" class="input-xlarge" value="${description}"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Password:</label>
+                                <label class="control-label"><span class="required">*</span> Password:</label>
                                 <div class="controls">
                                     <input type="password" placeholder="Enter your password" name="password" class="input-xlarge">
                                 </div>
                             </div>	
                             <div class="control-group">
-                                <label class="control-label">Confirm Password:</label>
+                                <label class="control-label"><span class="required">*</span> Confirm Password:</label>
                                 <div class="controls">
                                     <input type="password" placeholder="Enter your password" name="confirmPassword" class="input-xlarge">
                                 </div>

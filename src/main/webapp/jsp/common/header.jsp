@@ -24,7 +24,7 @@
 
                         <ul class="user-menu">	
                             <c:if test="${sessionScope.user != null}"><li>Welcome ${sessionScope.user.firstName} ${sessionScope.user.lastName} </li>
-                                <li><!--<a href="#">My Account</a></li>-->
+                                <!--<li><a href="#">My Account</a></li>-->
                                     <c:if test="${sessionScope.user.userType == 1}">
                                     <li><a href="${pageContext.request.contextPath}/ViewCart">Your Cart</a></li>
                                     <li><a href="${pageContext.request.contextPath}/ViewOrderHistory">Order History</a></li>

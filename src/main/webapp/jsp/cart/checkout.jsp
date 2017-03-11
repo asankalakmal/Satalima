@@ -2,7 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/jsp/common/header.jsp"></jsp:include>
     <div id="wrapper" class="container">
-    <jsp:include page="/jsp/common/menu.jsp"></jsp:include>			
+    <jsp:include page="/jsp/common/menu.jsp"></jsp:include>
+    <jsp:include page="/jsp/common/messages.jsp"></jsp:include>
         <section class="header_text sub">
             <h2><span>Check Out</span></h2>
         </section>	
@@ -74,27 +75,27 @@
                                             <div class="span6">
                                                 <h4>Your Personal Details</h4>
                                                 <div class="control-group">
-                                                    <label class="control-label">First Name</label>
+                                                    <label class="control-label"><span class="required">*</span> First Name</label>
                                                     <div class="controls">
-                                                        <input type="text" placeholder="" class="input-xlarge" name="firstName">
+                                                        <input type="text" placeholder="" class="input-xlarge" name="firstName" value="${firstName}">
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">Last Name</label>
+                                                    <label class="control-label"><span class="required">*</span> Last Name</label>
                                                     <div class="controls">
-                                                        <input type="text" placeholder="" class="input-xlarge" name="lastName">
+                                                        <input type="text" placeholder="" class="input-xlarge" name="lastName" value="${lastName}">
                                                     </div>
                                                 </div>					  
                                                 <div class="control-group">
-                                                    <label class="control-label">Email Address</label>
+                                                    <label class="control-label"><span class="required">*</span> Email Address</label>
                                                     <div class="controls">
-                                                        <input type="text" placeholder="" class="input-xlarge" name="email">
+                                                        <input type="text" placeholder="" class="input-xlarge" name="email" value="${email}">
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
                                                     <label class="control-label">Telephone</label>
                                                     <div class="controls">
-                                                        <input type="text" placeholder="" class="input-xlarge" name="telephone">
+                                                        <input type="text" placeholder="" class="input-xlarge" name="telephone" value="${telephone}">
                                                     </div>
                                                 </div>
 
@@ -105,25 +106,25 @@
                                                 <div class="control-group">
                                                     <label class="control-label"><span class="required">*</span> Address 1:</label>
                                                     <div class="controls">
-                                                        <input type="text" placeholder="" class="input-xlarge" name="address1">
+                                                        <input type="text" placeholder="" class="input-xlarge" name="address1" value="${address1}">
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
                                                     <label class="control-label">Address 2:</label>
                                                     <div class="controls">
-                                                        <input type="text" placeholder="" class="input-xlarge" name="address2">
+                                                        <input type="text" placeholder="" class="input-xlarge" name="address2" value="${address2}">
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
                                                     <label class="control-label"><span class="required">*</span> City:</label>
                                                     <div class="controls">
-                                                        <input type="text" placeholder="" class="input-xlarge" name="city">
+                                                        <input type="text" placeholder="" class="input-xlarge" name="city" value="${city}">
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
                                                     <label class="control-label"><span class="required">*</span> Postal Code:</label>
                                                     <div class="controls">
-                                                        <input type="text" placeholder="" class="input-xlarge" name="postalCode">
+                                                        <input type="text" placeholder="" class="input-xlarge" name="postalCode" value="${postalCode}">
                                                     </div>
                                                 </div>
                                                 <div class="control-group">

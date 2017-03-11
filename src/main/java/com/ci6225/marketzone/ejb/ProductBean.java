@@ -26,7 +26,10 @@ public class ProductBean {
     
     public void addProduct(String name, String description, int userId, int quantity, float unitPrice, FileItem image) throws Exception {
         ProductDao productDao = new ProductDao();
-        String imageName = uploadProductImage(image, imagePath+"/"+Integer.toString(userId));
+        String imageName = null;
+        if(image != null) {
+            imageName = uploadProductImage(image, imagePath+"/"+Integer.toString(userId));
+        }
         Product product = new Product(name, description, quantity, unitPrice, imageName);
         Seller seller = new Seller(userId);
         product.setSeller(seller);

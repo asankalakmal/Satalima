@@ -3,8 +3,9 @@
 <jsp:include page="/jsp/common/header.jsp"></jsp:include>
     <div id="wrapper" class="container">
     <jsp:include page="/jsp/common/menu.jsp"></jsp:include>
+    <jsp:include page="/jsp/common/messages.jsp"></jsp:include>
         <section class="header_text sub">
-        <h4><span>Product Detail</span></h4>
+        <h2><span>Product Detail</span></h2>
     </section>
     <section class="main-content">				
         <div class="row">						

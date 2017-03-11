@@ -3,7 +3,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Remove</th>
+            <th>&nbsp;</th>
             <th>Image</th>
             <th>Product Name</th>
             <th>Quantity</th>

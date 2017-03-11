@@ -11,14 +11,20 @@
                     <!--<form method="POST" class="search_form">
                         <input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
                     </form>-->
-                    <a href="./" class="logo pull-left"><img src="${pageContext.request.contextPath}/themes/images/logo.png" class="site_logo" alt=""></a>
+                    <c:if test="${sessionScope.user.userType == 2}">
+                        <a href="${pageContext.request.contextPath}/ViewProductList" class="logo pull-left"><img src="${pageContext.request.contextPath}/themes/images/logo.png" class="site_logo" alt=""></a>
+                    </c:if>
+                    <c:if test="${sessionScope.user.userType != 2}">
+                        <a href="./" class="logo pull-left"><img src="${pageContext.request.contextPath}/themes/images/logo.png" class="site_logo" alt=""></a>
+                    </c:if>
+                    
                 </div>
                 <div class="span8">
                     <div class="account pull-right">
-                        
+
                         <ul class="user-menu">	
                             <c:if test="${sessionScope.user != null}"><li>Welcome ${sessionScope.user.firstName} ${sessionScope.user.lastName} </li>
-                                <li><a href="#">My Account</a></li>
+                                <li><!--<a href="#">My Account</a></li>-->
                                     <c:if test="${sessionScope.user.userType == 1}">
                                     <li><a href="${pageContext.request.contextPath}/ViewCart">Your Cart</a></li>
                                     <li><a href="${pageContext.request.contextPath}/ViewOrderHistory">Order History</a></li>

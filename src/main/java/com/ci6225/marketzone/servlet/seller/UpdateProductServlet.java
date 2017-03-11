@@ -61,14 +61,23 @@ public class UpdateProductServlet extends HttpServlet {
             
             FormValidation validation = new FormValidation();
             List<String> messageList =  new ArrayList<String>();
-            if(!validation.validateupdateProduct(name, description, quantity, unitPrice)) {
+            if(validation.validateupdateProduct(name, description, quantity, unitPrice)) {
                 productBean.updateProduct(id, name, description, Integer.parseInt(quantity), Float.parseFloat(unitPrice), user.getUserId(), null, null);
                 messageList.add("Product Updated Successfully.");
                 request.setAttribute("successMessage", messageList);
                 RequestDispatcher rd = request.getRequestDispatcher("./ViewProductList");
                 rd.forward(request, response);
             } else {
+                messageList.addAll(validation.getErrorMessages());
+                request.setAttribute("errorMessage", messageList);
                 
+                request.setAttribute("name", name);
+                request.setAttribute("description", description);
+                request.setAttribute("unitPrice", unitPrice);
+                request.setAttribute("quantity", quantity);
+                request.setAttribute("id", id);
+                RequestDispatcher rd = request.getRequestDispatcher("./UpdateProduct");
+                rd.forward(request, response);
             }
 
         } catch (Exception e) {

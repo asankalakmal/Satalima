@@ -16,7 +16,7 @@
                         <hr/>
                         <p class="buttons center">				
                             <button class="btn" type="button" onclick="updateCart()">Update</button>
-                            <button class="btn" type="button">Continue Shopping</button>
+                            <button class="btn" type="button" id="conShopping">Continue Shopping</button>
                             <button class="btn btn-inverse" type="button" id="checkout">Checkout</button>
                         </p>					
                     </div>
@@ -33,7 +33,7 @@
             });
             
             $(document).ready(function () {
-                $('#checkout').click(function (e) {
+                $('#conShopping').click(function (e) {
                     document.location.href = "${pageContext.request.contextPath}";
                 });
             });
